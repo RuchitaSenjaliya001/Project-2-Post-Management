@@ -1,62 +1,52 @@
-import React from "react";
-import CreatedPostItem from "./CreatedPostItem";
+import React, { useEffect, useState } from "react";
+import PostItem from "./PostItem";
 import { Link } from "react-router-dom";
 
-const DUMMY = [
-    {
-        id: "p1",
-        title: "Post 1",
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-        body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eveniet tempora debitis aliquam ducimus laboriosam aut! Consequuntur odit quos iusto?",
-    },
-    {
-        id: "p2",
-        title: "Post 2",
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-        body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eveniet tempora debitis aliquam ducimus laboriosam aut! Consequuntur odit quos iusto?",
-    },
-    {
-        id: "p3",
-        title: "Post 3",
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-        body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eveniet tempora debitis aliquam ducimus laboriosam aut! Consequuntur odit quos iusto?",
-    },
-    {
-        id: "p4",
-        title: "Post 4",
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-        body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eveniet tempora debitis aliquam ducimus laboriosam aut! Consequuntur odit quos iusto?",
-    },
-    {
-        id: "p5",
-        title: "Post 5",
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-        body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eveniet tempora debitis aliquam ducimus laboriosam aut! Consequuntur odit quos iusto?",
-    },
-];
+export default function Posts({ posts }) {
+    const [postData, setPostData] = useState(posts);
 
-export default function Posts() {
+    const deleteHandler = (id) => {
+        let newList = [...postData];
+        setPostData(newList.filter((item) => item.id !== id));
+    };
+
+    useEffect(() => {
+        setPostData(posts)
+    }, [posts])
+
     return (
         <>
-            <section class="my-5">
-                <div class="grid grid-cols-3 gap-[50px] xl:max-w-7xl xl:m-auto">
-                    {DUMMY.map((post) => {
+            <section className="my-5">
+                {postData.length === 0 && (
+                    <p className="text-center font-semibold text-xl">
+                        No post created by admin
+                    </p>
+                )}
+                <div className="grid grid-cols-3 gap-[50px] xl:max-w-7xl xl:m-auto">
+                    {postData.map((post) => {
                         return (
-                            <Link to={`posts/${post.id}`}>
-                                <CreatedPostItem
-                                    key={post.id}
-                                    title={post.title}
-                                    body={post.body}
-                                    image={post.image}
-                                    id={post.id}
-                                />
-                            </Link>
-
+                            // <Link to={`posts/${post.id}`} key={post.id}>
+                            <PostItem
+                                key={post.id}
+                                title={
+                                    post.title.length > 25
+                                        ? `${post.title.substring(0, 23)}`
+                                        : post.title
+                                }
+                                body={
+                                    post.body.length > 120
+                                        ? `${post.body.substring(0, 117)}...`
+                                        : post.body
+                                }
+                                image={
+                                    post.image
+                                        ? post.image
+                                        : `https://picsum.photos/id/${post.id * 2}/500/300`
+                                }
+                                id={post.id}
+                                onDelete={deleteHandler}
+                            />
+                            // </Link>
                         );
                     })}
                 </div>
