@@ -22,7 +22,7 @@ export default function Posts({ posts }) {
                         No post created by admin
                     </p>
                 )}
-                <div className="grid grid-cols-3 gap-[50px] xl:max-w-7xl xl:m-auto">
+                <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 px-4 lg:grid-cols-3 gap-[50px] xl:max-w-7xl xl:m-auto">
                     {postData.map((post) => {
                         return (
                             // <Link to={`posts/${post.id}`} key={post.id}>

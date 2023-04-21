@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { MdMenu } from 'react-icons/md'
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -22,8 +23,9 @@ export default function Navbar() {
                     <div className="text-xl">
                         <Link to="/">PROJECT 2</Link>
                     </div>
-                    <div className="">
-                        <ul className="flex space-x-6 items-center">
+                    <div className="flex">
+                        <div className="md:hidden"> <MdMenu fontSize="30px" /></div>
+                        <ul className="hidden md:flex space-x-6 items-center">
                             <li>
                                 <Link to="/">Home</Link>
                             </li>

@@ -61,13 +61,13 @@ export default function Login() {
     };
     return (
         <div className="flex">
-            <div className="w-1/2 bg-[#201d75] min-h-screen text-white flex justify-center items-center">
+            <div className="hidden lg:w-1/2 bg-[#201d75] min-h-screen text-white lg:flex lg:justify-center lg:items-center">
                 hello
             </div>
 
             <form
                 onSubmit={loginHandler}
-                className="w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4"
+                className="w-full lg:w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4"
             >
                 <div className="text-center">
                     <h1 className="text-3xl font-bold pb-2">Hello Again,</h1>

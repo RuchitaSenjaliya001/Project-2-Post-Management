@@ -24,7 +24,6 @@ export default function PostItem({ title, body, image, id, onDelete }) {
                     <p className="text-gray-800 text-lg pb-5 text-justify text-ellipsis ">
                         {body}
                     </p>
-
                 </div>
 
                 {userLoginData.role === "admin" && (

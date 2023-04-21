@@ -7,7 +7,6 @@ export default function PostDetail() {
         <>
             <div className="text-3xl text-center">
                 {params.postId}
-
             </div>
         </>
     )
