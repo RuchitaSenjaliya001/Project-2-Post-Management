@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../UI/Button'
 import { useParams } from 'react-router-dom'
 
 export default function PostDetail({ postData }) {
+    const [currentPost, setCurrentPost] = useState({})
     const params = useParams();
-    // console.log(postData);
-    // console.log(Object.values(postData));
-    const currentPost = postData.filter((data) => data.id == params.postId);
-    console.log(currentPost);
+
+    useEffect(() => {
+        const filteredPost = postData.filter((data) => data.id == params.postId);
+        setCurrentPost(...filteredPost)
+    }, [params])
+
     return (
         <>
             <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-5 p-5">

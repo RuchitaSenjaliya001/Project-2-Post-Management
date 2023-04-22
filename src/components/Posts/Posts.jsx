@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostItem from "./PostItem";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Posts({ posts, isCreatedPost }) {
     const navigate = useNavigate();
@@ -34,7 +34,6 @@ export default function Posts({ posts, isCreatedPost }) {
                     {postData.length > 0 &&
                         postData.map((post) => {
                             return (
-                                // <Link to={`posts/${post.id}`} key={post.id}>
                                 <PostItem
                                     key={post.id}
                                     title={
@@ -57,7 +56,6 @@ export default function Posts({ posts, isCreatedPost }) {
                                     onDelete={() => deleteHandler(post.id)}
                                     isCreatedPost={isCreatedPost}
                                 />
-                                // </Link>
                             );
                         })}
                 </div>

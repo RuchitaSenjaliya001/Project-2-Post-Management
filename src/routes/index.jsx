@@ -23,21 +23,21 @@ const IsLogin = () => {
 export const router = createBrowserRouter([
 
     {
-        // element: <PrivateRoute isAuth={isAuth} />, children: [
-        //     {
-        path: "/",
-        element: <RootLayout />,
-        children: [
-            { index: true, element: <HomePage />, loader: exploreLoader },
+        element: <PrivateRoute isAuth={isAuth} />, children: [
             {
-                path: 'posts', children: [
-                    { path: ':postId', element: <PostDetail postData={postData} /> }
-                ]
+                path: "/",
+                element: <RootLayout />,
+                children: [
+                    { index: true, element: <HomePage />, loader: exploreLoader },
+                    {
+                        path: 'posts', children: [
+                            { path: ':postId', element: <PostDetail postData={postData} /> }
+                        ]
+                    },
+                    { path: "new-post", element: <NewPostPage /> },
+                ],
             },
-            { path: "new-post", element: <NewPostPage /> },
-        ],
-        //     },
-        // ]
+        ]
     },
     { path: "login", element: !storage ? <LoginPage /> : <IsLogin /> },
 
