@@ -33,6 +33,8 @@ export default function Login() {
         }
         if (enteredData.otp.trim().length !== 4) {
             error.otp = "Please enter 4 digit OTP";
+        } else if (generatedOtp !== enteredData.otp) {
+            error.otp = "Invalid OTP"
         }
         setFormErrors({ ...error });
         return Object.keys(error) < 1;
@@ -40,7 +42,7 @@ export default function Login() {
 
     const loginHandler = (event) => {
         event.preventDefault();
-        localStorage.setItem("user", JSON.stringify(enteredData));
+
 
         if (
             enteredData.mobileNumber === "" ||
@@ -56,7 +58,9 @@ export default function Login() {
         }
         if (generatedOtp === enteredData.otp) {
             localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("user", JSON.stringify(enteredData));
             navigate("/");
+
         }
     };
     return (
@@ -106,6 +110,7 @@ export default function Login() {
                     type="text"
                     name="otp"
                     title="Enter OTP"
+                    className="w-1/2"
                     onChange={inputChangeHandler}
                     hasError={formErrors}
                     errorMsg={formErrors.otp}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
@@ -42,12 +42,23 @@ const DUMMY = [
 ];
 
 export default function HomePage() {
+    const [isCreatedPost, setIsCreatedPost] = useState(false)
+
+    const loginInfo = localStorage.getItem("user");
+    const userLoginData = JSON.parse(loginInfo);
+
+    useEffect(() => {
+        if (userLoginData.role === 'admin') {
+            setIsCreatedPost(true)
+        }
+    }, [userLoginData])
+
     const data = useLoaderData();
-    const posts = data.slice(0, 10)
+    const posts = data.slice(0, 10);
 
     return (
         <>
-            <CreatedPost createdPosts={DUMMY} />
+            <CreatedPost createdPosts={DUMMY} isCreatedPost={isCreatedPost} />
             <ExplorePost explorePosts={posts} />
         </>
     );

@@ -1,19 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import { MdMenu } from 'react-icons/md'
+import { MdMenu } from "react-icons/md";
 
-export default function Navbar() {
-    const navigate = useNavigate();
+export default function Navbar({ showModalHandler }) {
 
-    const logoutHandler = () => {
-        const reply = confirm("Are you sure you want to logout?")
-        if (reply) {
-            localStorage.removeItem("isLoggedIn");
-            navigate("/login");
-        }
-    };
     const loginInfo = localStorage.getItem("user");
+    console.log(loginInfo);
     const userLoginData = JSON.parse(loginInfo);
 
     return (
@@ -24,7 +17,10 @@ export default function Navbar() {
                         <Link to="/">PROJECT 2</Link>
                     </div>
                     <div className="flex">
-                        <div className="md:hidden"> <MdMenu fontSize="30px" /></div>
+                        <div className="md:hidden">
+                            {" "}
+                            <MdMenu fontSize="30px" />
+                        </div>
                         <ul className="hidden md:flex space-x-6 items-center">
                             <li>
                                 <Link to="/">Home</Link>
@@ -36,9 +32,7 @@ export default function Navbar() {
                             )}
 
                             <li>
-                                <Link to="/login">
-                                    <button onClick={logoutHandler}>Logout</button>
-                                </Link>
+                                <button onClick={showModalHandler}>Logout</button>
                             </li>
                             <li>
                                 <FaUserCircle className="text-2xl" />

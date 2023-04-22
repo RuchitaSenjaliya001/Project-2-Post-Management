@@ -5,24 +5,9 @@ import PostDetail from "./components/Posts/PostDetail";
 import LoginPage from "./pages/LoginPage";
 import { loader as exploreLoader } from "./pages/HomePage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import NewPost from "./pages/NewPost";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { index: true, element: <HomePage />, loader: exploreLoader },
-      {
-        path: 'posts', children: [
-          { path: ':postId', element: <PostDetail /> }
-        ]
-      },
-      { path: "new-post", element: <NewPost /> },
-    ],
-  },
-  { path: "login", element: <LoginPage /> },
-]);
+import NewPostPage from "./pages/NewPostPage";
+import Error from "./pages/Error";
+import { router } from "./routes";
 
 function App() {
   return (
