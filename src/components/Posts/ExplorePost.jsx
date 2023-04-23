@@ -3,18 +3,18 @@ import Posts from "./Posts";
 import { FaSearch } from "react-icons/fa";
 
 export default function ExplorePost({ explorePosts }) {
-    const [searchInput, setSearchInput] = useState();
+    const [searchInput, setSearchInput] = useState('');
     const [searchList, setSearchList] = useState(explorePosts);
 
     const searchChangeHandler = (e) => {
-        setSearchInput(e.target.value);
-        const filteredPost = searchList.filter((post) => {
-            if (searchInput === "") {
-                return explorePosts;
+        // setSearchInput(e.target.value);
+        const filteredPost = explorePosts.filter((post) => {
+            if (e.target.value === "") {
+                return explorePosts
             }
-
-            return post.title.includes(searchInput);
+            return post.title.includes(e.target.value);
         });
+        setSearchInput(e.target.value)
         setSearchList(filteredPost);
     };
 
@@ -22,7 +22,7 @@ export default function ExplorePost({ explorePosts }) {
         <div className="max-w-7xl m-auto">
             <div className="flex justify-between items-center mt-5">
                 <h1 className="text-3xl py-4 text-[#201d75] font-bold">
-                    Explore Posts {searchInput}
+                    Explore Posts
                 </h1>
 
                 <form className="w-1/3 flex items-center">
@@ -48,12 +48,13 @@ export default function ExplorePost({ explorePosts }) {
                 </form>
             </div>
             {/* {searchList.length > 0 ? "Search List" : "ExplorePosts"} */}
-            {searchList.length > 0 ? (
+            {/* {searchList.length > 0 ? (
                 <Posts posts={searchList} />
             ) : (
                 <Posts posts={explorePosts} />
-            )}
-            {/* <Posts posts={searchList} /> */}
+            )} */}
+            {console.log(searchList)}
+            <Posts posts={searchList} />
         </div>
     );
 }

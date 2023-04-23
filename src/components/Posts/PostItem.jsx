@@ -1,47 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
+import ConfirmationAlert from "../ConfirmationAlert";
 
-export default function PostItem({ title, body, image, id, onDelete }) {
+export default function PostItem({
+    title,
+    body,
+    image,
+    id,
+    onDelete,
+    isCreatedPost,
+    onClick,
+}) {
     const loginInfo = localStorage.getItem("user");
     const userLoginData = JSON.parse(loginInfo);
 
-    const deleteHandler = () => {
-        const reply = confirm("Are you sure?");
-        if (reply) {
-            onDelete(id);
-        }
-    };
-    return (
-        <div
-            className={`flex flex-col shadow-xl md:basis-[46%] lg:basis-[30%] sm:max-w-xl rounded-lg overflow-hidden pb-5 ${userLoginData.role === "admin" && "cursor-pointer"
-                }`}
-        >
-            <img src={image} alt="" className="" />
-            <div className="flex flex-col justify-between h-full px-5">
-                <div className="">
-                    <h1 className="text-2xl font-semibold py-3 text-center">{title}</h1>
-                    <p className="text-gray-800 text-lg pb-5 text-justify text-ellipsis ">
-                        {body}
-                    </p>
-                </div>
+    const [showModal, setShowModal] = useState(false);
 
-                {userLoginData.role === "admin" && (
-                    <div className="flex justify-end space-x-4">
-                        <Button
-                            title="Delete"
-                            className="bg-red-500 hover:bg-red-600 rounded-md"
-                            onClick={deleteHandler}
-                        />
-                        <Link to={`posts/${id}`}>
+    const showModalHandler = () => {
+        setShowModal(true);
+    };
+
+    const hideModalHandler = () => {
+        setShowModal(false);
+    };
+
+    return (
+        <>
+            {showModal && (
+                <ConfirmationAlert
+                    message="Are you sure you want to delete this post?"
+                    onClose={hideModalHandler}
+                    onProceed={onDelete}
+                />
+            )}
+
+            <div
+                className={`flex flex-col shadow-xl md:basis-[46%] lg:basis-[30%] sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isCreatedPost && "cursor-pointer"
+                    }`}
+            >
+                <div onClick={onClick}>
+                    <img
+                        src={image}
+                        alt=""
+                        className="w-[500px] h-[300px] object-cover"
+                    />
+                    <div className="">
+                        <h1 className="text-2xl font-semibold py-3 text-center">{title}</h1>
+                        <p className="text-gray-800 text-lg px-5 pb-5 text-justify text-ellipsis ">
+                            {body}
+                        </p>
+                    </div>
+                </div>
+                <div className="flex flex-col justify-between h-full px-5">
+                    {isCreatedPost && userLoginData.role === "admin" && (
+                        <div className="flex justify-end space-x-4">
+                            <Button
+                                title="Delete"
+                                className="bg-red-500 hover:bg-red-600 rounded-md"
+                                onClick={showModalHandler}
+                            />
+
                             <Button
                                 title="Edit"
+                                onClick={showModalHandler}
                                 className="bg-[#201d75] hover:bg-[#121056] rounded-md"
                             />
-                        </Link>
-                    </div>
-                )}
+
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
