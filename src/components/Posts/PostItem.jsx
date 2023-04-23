@@ -34,6 +34,7 @@ export default function PostItem({
                     onProceed={onDelete}
                 />
             )}
+
             <div
                 className={`flex flex-col shadow-xl md:basis-[46%] lg:basis-[30%] sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isCreatedPost && "cursor-pointer"
                     }`}
@@ -62,6 +63,7 @@ export default function PostItem({
 
                             <Button
                                 title="Edit"
+                                onClick={showModalHandler}
                                 className="bg-[#201d75] hover:bg-[#121056] rounded-md"
                             />
 

@@ -5,9 +5,7 @@ import { MdMenu } from "react-icons/md";
 
 export default function Navbar({ showModalHandler }) {
 
-    const loginInfo = localStorage.getItem("user");
-    console.log(loginInfo);
-    const userLoginData = JSON.parse(loginInfo);
+    const userLoginData = JSON.parse(localStorage.getItem("user"));
 
     return (
         <>
@@ -18,7 +16,7 @@ export default function Navbar({ showModalHandler }) {
                     </div>
                     <div className="flex">
                         <div className="md:hidden">
-                            {" "}
+
                             <MdMenu fontSize="30px" />
                         </div>
                         <ul className="hidden md:flex space-x-6 items-center">

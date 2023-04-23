@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import ConfirmationAlert from "../components/ConfirmationAlert";
 
-export default function RootLayout() {
+export default function RootLayout({ userLoginData }) {
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false);
 
@@ -14,10 +14,9 @@ export default function RootLayout() {
         setShowModal(false);
     };
     const logoutHandler = () => {
-        localStorage.setItem("isLoggedIn", false);
-        // localStorage.removeItem('user');
-        navigate("/");
-
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem('user');
+        navigate("/login");
     };
     return (
         <>
@@ -28,7 +27,7 @@ export default function RootLayout() {
                     onProceed={logoutHandler}
                 />
             )}
-            <Navbar showModalHandler={showModalHandler} />
+            <Navbar showModalHandler={showModalHandler} userLoginData={userLoginData} />
             <Outlet />
         </>
     );

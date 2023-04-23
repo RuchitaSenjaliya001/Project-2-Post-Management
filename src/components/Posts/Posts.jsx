@@ -25,7 +25,7 @@ export default function Posts({ posts, isCreatedPost }) {
     return (
         <>
             <section className="my-5">
-                {postData.length === 0 && (
+                {isCreatedPost && postData.length === 0 && (
                     <p className="text-center font-semibold text-xl">
                         No post created by admin
                     </p>

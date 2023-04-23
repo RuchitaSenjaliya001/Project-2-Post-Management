@@ -1,13 +1,7 @@
+import React from 'react'
+import { Navigate } from 'react-router-dom'
 
-import { Navigate, Outlet } from "react-router-dom";
-
-const PrivateRoute = (props) => {
-
-    if (props.isAuth) {
-        return <Outlet />
-    } else {
-        return <Navigate to="/login" />
-    }
+export default function PrivateRoute({ children }) {
+    const user = JSON.parse(localStorage.getItem('user'))
+    return user ? children : <Navigate to='/login' />
 }
-
-export default PrivateRoute;

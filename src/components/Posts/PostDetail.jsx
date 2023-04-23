@@ -13,9 +13,9 @@ export default function PostDetail({ postData }) {
 
     return (
         <>
-            <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-5 p-5">
+            <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-10 p-5">
                 <div className="w-1/2">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop" alt="" className='w-full object-cover rounded-md' />
+                    <img src={currentPost.image} alt="" className='w-full h-[400px] object-cover rounded-md' />
                 </div>
                 <div className="w-1/2 flex flex-col justify-between">
                     <div className="">
