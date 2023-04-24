@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Input from "../UI/Input"
+import Input from "../UI/Input";
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
-import Form from "../UI/Form";
+import PostForm from "../UI/PostForm";
 
 const getLocalItems = () => {
-    let list = localStorage.getItem('listOfPosts');
+    let list = localStorage.getItem("listOfPosts");
 
     if (list) {
-        return JSON.parse(localStorage.getItem('listOfPosts'))
+        return JSON.parse(localStorage.getItem("listOfPosts"));
     } else {
         return [];
     }
-}
-
+};
 
 export default function NewPost() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [enteredData, setEnteredData] = useState({
         id: Math.floor(Math.random() * 9000 + 1000),
         title: "",
         body: "",
         image: "",
     });
-    const [postItems, setPostItems] = useState(getLocalItems())
+    const [postItems, setPostItems] = useState(getLocalItems());
 
     const inputChangeHandler = (event) => {
         const { name, value } = event.target;
@@ -47,27 +46,23 @@ export default function NewPost() {
 
     const addPostHandler = (e) => {
         e.preventDefault();
-        if (enteredData.title === '' || enteredData.body === '') {
-            return
+        if (enteredData.title === "" || enteredData.body === "") {
+            return;
         } else {
-            setPostItems([...postItems, enteredData])
+            setPostItems([...postItems, enteredData]);
             setEnteredData({
                 title: "",
                 body: "",
                 image: "",
-            })
-            navigate('/')
+            });
+            navigate("/");
         }
-
-    }
-
+    };
 
     // set form data to local storage
     useEffect(() => {
         localStorage.setItem("listOfPosts", JSON.stringify(postItems));
-    }, [postItems])
-
-
+    }, [postItems]);
 
     return (
         <>
@@ -75,7 +70,11 @@ export default function NewPost() {
                 Let's Create New Post
             </h1>
             <div className="max-w-2xl m-auto">
-                <Form enteredData={enteredData} inputChangeHandler={inputChangeHandler} addPostHandler={addPostHandler} />
+                <PostForm
+                    enteredData={enteredData}
+                    inputChangeHandler={inputChangeHandler}
+                    addPostHandler={addPostHandler}
+                />
             </div>
         </>
     );

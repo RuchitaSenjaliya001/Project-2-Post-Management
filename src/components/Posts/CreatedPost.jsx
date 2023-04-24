@@ -21,15 +21,20 @@ const DUMMY = [
 
 export default function CreatedPost({ isCreatedPost }) {
 
-    // const [createdPosts, setCreatedPosts] = useState([]);
+    const [createdPosts, setCreatedPosts] = useState([]);
+
+    useEffect(() => {
+        const localData = localStorage.getItem('listOfPosts');
+        setCreatedPosts(JSON.parse(localData) || []);
+    }, [localStorage]);
 
     // useEffect(() => {
     //     const localData = localStorage.getItem('listOfPosts');
-    //     setCreatedPosts(JSON.parse(localData) || []);
-    // }, [setCreatedPosts]);
+    // }, [localStorage]);
+    // const createdPosts = JSON.parse(localData);
 
-    const localData = localStorage.getItem('listOfPosts');
-    const createdPosts = JSON.parse(localData);
+    // const localData = localStorage.getItem('listOfPosts');
+    // const createdPosts = JSON.parse(localData);
     // const createdPosts = DUMMY.concat(JSON.parse(localData));
 
     return (

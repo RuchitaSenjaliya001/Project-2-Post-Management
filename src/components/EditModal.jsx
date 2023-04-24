@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Form from './UI/Form'
+import PostForm from './UI/PostForm'
 import Modal from './UI/Modal';
 
 const getLocalItems = () => {
@@ -11,6 +11,7 @@ const getLocalItems = () => {
         return [];
     }
 }
+
 
 export default function EditModal({ id, onClose }) {
 
@@ -40,13 +41,13 @@ export default function EditModal({ id, onClose }) {
             setEnteredData({ ...enteredData, [name]: value });
         }
     };
+
     const editPostHandler = (e) => {
         e.preventDefault();
         const updatedPost = [...postItems]
         const index = updatedPost.findIndex((post) => post.id === enteredData.id)
         updatedPost[index] = enteredData;
         localStorage.setItem('listOfPosts', JSON.stringify(updatedPost));
-        console.log(updatedPost);
         setPostItems(updatedPost)
         onClose();
     }
@@ -54,7 +55,7 @@ export default function EditModal({ id, onClose }) {
 
     return (
         <Modal onClick={onClose}>
-            <Form enteredData={enteredData} inputChangeHandler={inputChangeHandler} addPostHandler={editPostHandler} isEdit={true} onClose={onClose} />
+            <PostForm enteredData={enteredData} inputChangeHandler={inputChangeHandler} addPostHandler={editPostHandler} isEdit={true} onClose={onClose} />
         </Modal>
     )
 }

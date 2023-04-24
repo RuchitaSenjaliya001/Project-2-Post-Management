@@ -7,6 +7,7 @@ import { loader as exploreLoader } from "./pages/HomePage";
 import { Navigate, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import NewPostPage from "./pages/NewPostPage";
 import PrivateRoute from "./routes/PrivateRoute";
+import { action as newPostAction } from './pages/NewPostPage'
 
 const postData = JSON.parse(localStorage.getItem('listOfPosts'))
 
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
           { path: ':postId', element: <PrivateRoute><PostDetail postData={postData} /></PrivateRoute> }
         ]
       },
-      { path: "new-post", element: <PrivateRoute><NewPostPage /></PrivateRoute> },
+      { path: "new-post", element: <PrivateRoute><NewPostPage /></PrivateRoute>, action: newPostAction },
     ],
   },
   { path: "login", element: <LoginPage /> },

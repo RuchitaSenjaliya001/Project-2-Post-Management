@@ -11,8 +11,8 @@ export default function Navbar({ showModalHandler }) {
         <>
             <nav className="w-full bg-[#201d75] text-white p-4">
                 <div className="max-w-7xl text-md m-auto flex justify-between items-center">
-                    <div className="text-xl">
-                        <Link to="/">PROJECT 2</Link>
+                    <div className="text-xl font-bold">
+                        <Link to="/">BlogPost</Link>
                     </div>
                     <div className="flex">
                         <div className="md:hidden">

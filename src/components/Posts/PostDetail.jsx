@@ -8,27 +8,36 @@ export default function PostDetail({ postData }) {
     const params = useParams();
     const navigate = useNavigate();
 
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         const filteredPost = postData.filter((data) => data.id == params.postId);
         setCurrentPost(...filteredPost);
     }, [params]);
 
+    const showModalHandler = () => {
+        setShowModal(true);
+    };
+
+    const hideModalHandler = () => {
+        setShowModal(false);
+    };
 
     const deletePostHandler = (id) => {
         const updated = postData.filter((post) => post.id !== id);
-        localStorage.setItem("listOfPosts", JSON.stringify(updated))
+        localStorage.setItem("listOfPosts", JSON.stringify(updated));
         navigate("/");
     };
 
     return (
         <>
-            {/* {showModal && (
+            {showModal && (
                 <ConfirmationAlert
                     message="Are you sure you want to delete this post?"
                     onClose={hideModalHandler}
                     onProceed={() => deletePostHandler(currentPost.id)}
                 />
-            )} */}
+            )}
             <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-10 p-5">
                 <div className="w-1/2">
                     <img
@@ -45,7 +54,7 @@ export default function PostDetail({ postData }) {
                     <div className="flex justify-end space-x-5 my-4">
                         <Button
                             title="Delete"
-                            onClick={() => deletePostHandler(currentPost.id)}
+                            onClick={showModalHandler}
                             className="bg-red-500 hover:bg-red-600"
                         />
                         <Button title="Edit" className="bg-[#201d75] hover:bg-[#121056]" />

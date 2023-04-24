@@ -1,11 +1,16 @@
 import React from "react";
 import Input from "./Input";
+import { Form } from "react-router-dom";
 import Button from "./Button";
+import { toast } from "react-toastify";
 
-export default function Form({ enteredData, inputChangeHandler, addPostHandler, isEdit, onClose }) {
+export default function PostForm({ enteredData, inputChangeHandler, addPostHandler, isEdit, onClose }) {
+    // const notify = () => {
+    //     toast.success("Succesfully add data")
+    // }
     return (
         <>
-            <form action="" className="p-5 text-center">
+            <Form method="post" className="p-5 text-center" >
                 <Input
                     type="text"
                     title="Enter Title"
@@ -21,7 +26,7 @@ export default function Form({ enteredData, inputChangeHandler, addPostHandler, 
                         id="body"
                         rows="5"
                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-md border-2 border-gray-500 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
+                        placeholder=" "
                         onChange={inputChangeHandler}
                     ></textarea>
                     <label
@@ -41,6 +46,7 @@ export default function Form({ enteredData, inputChangeHandler, addPostHandler, 
                 <div className="flex gap-3 justify-center">
                     <Button
                         type="submit"
+                        // onClick={notify}
                         onClick={addPostHandler}
                         title={isEdit ? "Update" : "Add Post"}
                         className="w-1/2 bg-[#201d75]"
@@ -52,7 +58,7 @@ export default function Form({ enteredData, inputChangeHandler, addPostHandler, 
                         className="w-1/2 bg-red-500"
                     />}
                 </div>
-            </form>
+            </Form>
         </>
     );
 }
