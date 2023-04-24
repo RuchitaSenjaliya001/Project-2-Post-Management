@@ -15,7 +15,7 @@ export default function PostDetail({ postData }) {
     useEffect(() => {
         const filteredPost = postData.filter((data) => data.id == params.postId);
         setCurrentPost(...filteredPost);
-    }, [params]);
+    }, [params, localStorage]);
 
     const showModalHandler = () => {
         setShowModal(true);
@@ -39,6 +39,8 @@ export default function PostDetail({ postData }) {
         navigate("/");
     };
 
+    console.log(currentPost);
+
     return (
         <>
             {showModal && (
@@ -54,7 +56,7 @@ export default function PostDetail({ postData }) {
             <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-10 p-5">
                 <div className="w-1/2">
                     <img
-                        src={currentPost.image}
+                        src={currentPost?.image}
                         alt=""
                         className="w-full h-[400px] object-cover rounded-md"
                     />

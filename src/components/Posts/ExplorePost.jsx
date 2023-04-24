@@ -22,7 +22,7 @@ export default function ExplorePost({ explorePosts }) {
     return (
         <div className="max-w-7xl m-auto">
             <div className="flex justify-between items-center mt-5">
-                <h1 className="text-3xl p-4 text-[#201d75] font-bold">
+                <h1 className="text-3xl py-4 text-[#201d75] font-bold">
                     Explore Posts
                 </h1>
 

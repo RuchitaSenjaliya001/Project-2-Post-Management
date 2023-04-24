@@ -26,7 +26,7 @@ export default function CreatedPost({ isCreatedPost }) {
     useEffect(() => {
         const localData = localStorage.getItem('listOfPosts');
         setCreatedPosts(JSON.parse(localData) || []);
-    }, [localStorage]);
+    }, [localStorage.getItem("listOfPosts")]);
 
     // useEffect(() => {
     //     const localData = localStorage.getItem('listOfPosts');
@@ -39,7 +39,7 @@ export default function CreatedPost({ isCreatedPost }) {
 
     return (
         <div className="max-w-7xl m-auto">
-            <h1 className='text-3xl p-4 text-[#201d75] font-bold mt-5'>Created Posts</h1>
+            <h1 className='text-3xl py-4 text-[#201d75] font-bold mt-5'>Created Posts</h1>
             <Posts posts={createdPosts === null ? [] : createdPosts} isCreatedPost={isCreatedPost} />
         </div>
     )

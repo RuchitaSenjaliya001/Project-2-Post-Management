@@ -16,7 +16,6 @@ export default function Navbar({ showModalHandler }) {
                     </div>
                     <div className="flex">
                         <div className="md:hidden">
-
                             <MdMenu fontSize="30px" />
                         </div>
                         <ul className="hidden md:flex space-x-6 items-center">

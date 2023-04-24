@@ -46,7 +46,7 @@ export default function PostItem({
             )}
 
             <div
-                className={`flex flex-col shadow-xl md:basis-[46%] lg:basis-[30%] sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isCreatedPost && "cursor-pointer"
+                className={`flex flex-col shadow-xl h-full sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isCreatedPost && "cursor-pointer"
                     }`}
             >
                 <div onClick={onClick}>
@@ -62,7 +62,7 @@ export default function PostItem({
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col justify-between h-full px-5">
+                <div className="flex flex-col justify-end h-full px-5">
                     {isCreatedPost && userLoginData.role === "admin" && (
                         <div className="flex justify-end space-x-4">
                             <Button
