@@ -26,11 +26,9 @@ export async function action({ request }) {
     });
 
     if (!response.ok) {
-        console.log("fail");
         toast.error("Could not send data");
     }
-    // alert("success")
     toast.success("Post added succesfully");
-    // console.log("data added succesfully");
+    console.log("data added succesfully");
     return redirect('/');
 }

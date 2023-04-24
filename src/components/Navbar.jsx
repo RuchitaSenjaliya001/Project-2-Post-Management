@@ -20,19 +20,19 @@ export default function Navbar({ showModalHandler }) {
                             <MdMenu fontSize="30px" />
                         </div>
                         <ul className="hidden md:flex space-x-6 items-center">
-                            <li>
+                            <li className="hover:font-semibold">
                                 <Link to="/">Home</Link>
                             </li>
                             {userLoginData.role === "admin" && (
-                                <li>
+                                <li className="hover:font-semibold">
                                     <Link to="/new-post">New post</Link>
                                 </li>
                             )}
 
-                            <li>
+                            <li className="hover:font-semibold">
                                 <button onClick={showModalHandler}>Logout</button>
                             </li>
-                            <li>
+                            <li className="hover:font-semibold">
                                 <FaUserCircle className="text-2xl" />
                             </li>
                         </ul>

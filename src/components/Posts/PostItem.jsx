@@ -15,8 +15,8 @@ export default function PostItem({
 }) {
     const loginInfo = localStorage.getItem("user");
     const userLoginData = JSON.parse(loginInfo);
-    const [editModal, setEditModal] = useState({ show: false, id: null })
     const [showModal, setShowModal] = useState(false);
+    const [editModal, setEditModal] = useState({ show: false, id: null })
 
     const showModalHandler = () => {
         setShowModal(true);

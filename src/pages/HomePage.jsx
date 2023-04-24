@@ -24,7 +24,7 @@ export default function HomePage() {
             <CreatedPost isCreatedPost={isCreatedPost} />
             <ExplorePost explorePosts={posts} />
             {/* {alert("home")} */}
-            {/* <ToastContainer
+            <ToastContainer
                 position="top-center"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -35,7 +35,7 @@ export default function HomePage() {
                 draggable
                 pauseOnHover={false}
                 theme="light"
-            /> */}
+            />
         </>
     );
 }
@@ -49,3 +49,5 @@ export const loader = async () => {
         return resData;
     }
 };
+
+

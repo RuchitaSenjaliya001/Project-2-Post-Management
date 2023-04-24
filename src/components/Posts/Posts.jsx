@@ -18,7 +18,7 @@ export default function Posts({ posts, isCreatedPost }) {
 
     const clickHandler = (id) => {
         if (isCreatedPost) {
-            navigate(`/posts/${id}`);
+            navigate(`${id}`);
         }
     };
 

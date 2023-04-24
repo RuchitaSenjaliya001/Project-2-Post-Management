@@ -121,7 +121,6 @@ export default function Login() {
                     isTouched={touched.otp}
                     errorMsg={errors.otp}
                 />
-                {console.log(isValid)}
                 <Button
                     type="submit"
                     title="Login"

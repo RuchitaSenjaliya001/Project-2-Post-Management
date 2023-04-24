@@ -18,6 +18,7 @@ export default function ExplorePost({ explorePosts }) {
         setSearchList(filteredPost);
     };
 
+
     return (
         <div className="max-w-7xl m-auto">
             <div className="flex justify-between items-center mt-5">
@@ -26,9 +27,6 @@ export default function ExplorePost({ explorePosts }) {
                 </h1>
 
                 <form className="w-1/3 flex items-center">
-                    <label htmlFor="simple-search" className="sr-only">
-                        Search
-                    </label>
                     <div className="relative w-full">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 ">
                             <FaSearch color="#201d75" />
@@ -41,10 +39,10 @@ export default function ExplorePost({ explorePosts }) {
                             onChange={searchChangeHandler}
                         />
                     </div>
-
                 </form>
             </div>
 
+            {searchList.length === 0 && <p className="text-black text-center pt-5 text-xl font-semibold">No search Found.</p>}
             <Posts posts={searchList} />
         </div>
     );

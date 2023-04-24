@@ -4,13 +4,13 @@ import { Form } from "react-router-dom";
 import Button from "./Button";
 import { toast } from "react-toastify";
 
-export default function PostForm({ enteredData, inputChangeHandler, addPostHandler, isEdit, onClose }) {
-    // const notify = () => {
-    //     toast.success("Succesfully add data")
-    // }
+export default function PostForm({ enteredData, inputChangeHandler, addPostHandler, isEdit, onClose, }) {
+    const notify = () => {
+        toast.success("Post added successfully")
+    }
     return (
         <>
-            <Form method="post" className="p-5 text-center" >
+            <Form method="post" className="p-5 text-center" onSubmit={addPostHandler}>
                 <Input
                     type="text"
                     title="Enter Title"
@@ -46,16 +46,15 @@ export default function PostForm({ enteredData, inputChangeHandler, addPostHandl
                 <div className="flex gap-3 justify-center">
                     <Button
                         type="submit"
-                        // onClick={notify}
-                        onClick={addPostHandler}
+                        onClick={!isEdit && notify}
                         title={isEdit ? "Update" : "Add Post"}
-                        className="w-1/2 bg-[#201d75]"
+                        className="w-1/2 bg-[#201d75] py-2 mt-3"
                     />
                     {isEdit && <Button
                         type="button"
                         title="Cancel"
                         onClick={onClose}
-                        className="w-1/2 bg-red-500"
+                        className="w-1/2 py-2 bg-red-500 mt-3"
                     />}
                 </div>
             </Form>
