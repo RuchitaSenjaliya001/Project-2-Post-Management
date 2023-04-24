@@ -13,7 +13,6 @@ const postData = JSON.parse(localStorage.getItem('listOfPosts'))
 const userLoginData = JSON.parse(localStorage.getItem("user"));
 
 const router = createBrowserRouter([
-  // { path: "/", element: <PrivateRoute><HomePage /></PrivateRoute> },
   {
     path: "/",
     element: <PrivateRoute><RootLayout userLoginData={userLoginData ? userLoginData : <Navigate to='/login' />} /></PrivateRoute>,

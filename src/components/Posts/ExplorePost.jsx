@@ -21,7 +21,7 @@ export default function ExplorePost({ explorePosts }) {
     return (
         <div className="max-w-7xl m-auto">
             <div className="flex justify-between items-center mt-5">
-                <h1 className="text-3xl py-4 text-[#201d75] font-bold">
+                <h1 className="text-3xl p-4 text-[#201d75] font-bold">
                     Explore Posts
                 </h1>
 
@@ -39,21 +39,12 @@ export default function ExplorePost({ explorePosts }) {
                             placeholder="Search"
                             required
                             onChange={searchChangeHandler}
-                        //   value={search}
                         />
                     </div>
-                    {/* <button type="submit" className="px-5 py-2 ml-2 text-sm font-medium text-white rounded-md border  bg-[#201d75] hover:bg-[#121056] focus:ring-4 focus:outline-none focus:ring-blue-300" >
-                        Search
-                    </button> */}
+
                 </form>
             </div>
-            {/* {searchList.length > 0 ? "Search List" : "ExplorePosts"} */}
-            {/* {searchList.length > 0 ? (
-                <Posts posts={searchList} />
-            ) : (
-                <Posts posts={explorePosts} />
-            )} */}
-            {console.log(searchList)}
+
             <Posts posts={searchList} />
         </div>
     );
