@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 // import { redirect } from "react-router-dom";
 
 export default function HomePage() {
-    const [isCreatedPost, setIsCreatedPost] = useState(false)
 
+    const [isCreatedPost, setIsCreatedPost] = useState(false);
     const userLoginData = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
-        if (userLoginData.role === 'admin') {
-            setIsCreatedPost(true)
+        if (userLoginData.role === "admin") {
+            setIsCreatedPost(true);
         }
-    }, [userLoginData])
+    }, [userLoginData]);
 
     const data = useLoaderData();
     const posts = data.slice(0, 10);
@@ -49,5 +49,3 @@ export const loader = async () => {
         return resData;
     }
 };
-
-

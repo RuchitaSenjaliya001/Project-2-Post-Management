@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { redirect } from "react-router-dom";
 
-
 export default function NewPostPage() {
     return <NewPost />;
 }
@@ -30,5 +29,5 @@ export async function action({ request }) {
     }
     toast.success("Post added succesfully");
     console.log("data added succesfully");
-    return redirect('/');
+    return redirect("/");
 }

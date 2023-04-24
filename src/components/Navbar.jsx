@@ -4,7 +4,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 
 export default function Navbar({ showModalHandler }) {
-
     const userLoginData = JSON.parse(localStorage.getItem("user"));
 
     return (
@@ -27,7 +26,6 @@ export default function Navbar({ showModalHandler }) {
                                     <Link to="/new-post">New post</Link>
                                 </li>
                             )}
-
                             <li className="hover:font-semibold">
                                 <button onClick={showModalHandler}>Logout</button>
                             </li>

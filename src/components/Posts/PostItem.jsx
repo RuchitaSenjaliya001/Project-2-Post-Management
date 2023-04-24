@@ -16,7 +16,7 @@ export default function PostItem({
     const loginInfo = localStorage.getItem("user");
     const userLoginData = JSON.parse(loginInfo);
     const [showModal, setShowModal] = useState(false);
-    const [editModal, setEditModal] = useState({ show: false, id: null })
+    const [editModal, setEditModal] = useState({ show: false, id: null });
 
     const showModalHandler = () => {
         setShowModal(true);
@@ -76,7 +76,6 @@ export default function PostItem({
                                 onClick={() => editShowModalHandler(id)}
                                 className="bg-[#201d75] hover:bg-[#121056] rounded-md"
                             />
-
                         </div>
                     )}
                 </div>

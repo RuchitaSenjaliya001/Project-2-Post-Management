@@ -54,7 +54,6 @@ export default function Login() {
         initialValues: initialValues,
         validationSchema: loginSchema,
         onSubmit: (values, action) => {
-
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("user", JSON.stringify(values));
             navigate("/");

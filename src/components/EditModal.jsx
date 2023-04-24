@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import PostForm from './UI/PostForm'
-import Modal from './UI/Modal';
+import React, { useState, useEffect } from "react";
+import PostForm from "./UI/PostForm";
+import Modal from "./UI/Modal";
 
 const getLocalItems = () => {
-    let list = localStorage.getItem('listOfPosts');
+    let list = localStorage.getItem("listOfPosts");
 
     if (list) {
-        return JSON.parse(localStorage.getItem('listOfPosts'))
+        return JSON.parse(localStorage.getItem("listOfPosts"));
     } else {
         return [];
     }
-}
-
+};
 
 export default function EditModal({ id, onClose }) {
-
     const [enteredData, setEnteredData] = useState({});
-    const [postItems, setPostItems] = useState(getLocalItems())
+    const [postItems, setPostItems] = useState(getLocalItems());
 
     useEffect(() => {
         const selectedPost = postItems.filter((data) => data.id == id);
@@ -44,18 +42,23 @@ export default function EditModal({ id, onClose }) {
 
     const editPostHandler = (e) => {
         e.preventDefault();
-        const updatedPost = [...postItems]
-        const index = updatedPost.findIndex((post) => post.id === enteredData.id)
+        const updatedPost = [...postItems];
+        const index = updatedPost.findIndex((post) => post.id === enteredData.id);
         updatedPost[index] = enteredData;
-        localStorage.setItem('listOfPosts', JSON.stringify(updatedPost));
-        setPostItems(updatedPost)
+        localStorage.setItem("listOfPosts", JSON.stringify(updatedPost));
+        setPostItems(updatedPost);
         onClose();
-    }
-
+    };
 
     return (
         <Modal onClick={onClose}>
-            <PostForm enteredData={enteredData} inputChangeHandler={inputChangeHandler} addPostHandler={editPostHandler} isEdit={true} onClose={onClose} />
+            <PostForm
+                enteredData={enteredData}
+                inputChangeHandler={inputChangeHandler}
+                addPostHandler={editPostHandler}
+                isEdit={true}
+                onClose={onClose}
+            />
         </Modal>
-    )
+    );
 }

@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import ConfirmationAlert from "../components/ConfirmationAlert";
 
 export default function RootLayout({ userLoginData }) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
     const showModalHandler = () => {
@@ -15,7 +15,7 @@ export default function RootLayout({ userLoginData }) {
     };
     const logoutHandler = () => {
         localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem('user');
+        localStorage.removeItem("user");
         navigate("/login");
     };
     return (
@@ -27,7 +27,10 @@ export default function RootLayout({ userLoginData }) {
                     onProceed={logoutHandler}
                 />
             )}
-            <Navbar showModalHandler={showModalHandler} userLoginData={userLoginData} />
+            <Navbar
+                showModalHandler={showModalHandler}
+                userLoginData={userLoginData}
+            />
             <Outlet />
         </>
     );

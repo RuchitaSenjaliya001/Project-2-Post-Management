@@ -8,7 +8,7 @@ export default function PostDetail({ postData }) {
     const [currentPost, setCurrentPost] = useState({});
     const params = useParams();
     const navigate = useNavigate();
-    const [editModal, setEditModal] = useState({ show: false, id: null })
+    const [editModal, setEditModal] = useState({ show: false, id: null });
 
     const [showModal, setShowModal] = useState(false);
 
@@ -38,8 +38,6 @@ export default function PostDetail({ postData }) {
         localStorage.setItem("listOfPosts", JSON.stringify(updated));
         navigate("/");
     };
-
-    console.log(currentPost);
 
     return (
         <>
@@ -72,7 +70,11 @@ export default function PostDetail({ postData }) {
                             onClick={showModalHandler}
                             className="bg-red-500 hover:bg-red-600"
                         />
-                        <Button title="Edit" className="bg-[#201d75] hover:bg-[#121056]" onClick={() => editShowModalHandler(currentPost.id)} />
+                        <Button
+                            title="Edit"
+                            className="bg-[#201d75] hover:bg-[#121056]"
+                            onClick={() => editShowModalHandler(currentPost.id)}
+                        />
                     </div>
                 </div>
             </div>

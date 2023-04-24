@@ -3,21 +3,20 @@ import Posts from "./Posts";
 import { FaSearch } from "react-icons/fa";
 
 export default function ExplorePost({ explorePosts }) {
-    const [searchInput, setSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState("");
     const [searchList, setSearchList] = useState(explorePosts);
 
     const searchChangeHandler = (e) => {
         // setSearchInput(e.target.value);
         const filteredPost = explorePosts.filter((post) => {
             if (e.target.value === "") {
-                return explorePosts
+                return explorePosts;
             }
             return post.title.includes(e.target.value);
         });
-        setSearchInput(e.target.value)
+        setSearchInput(e.target.value);
         setSearchList(filteredPost);
     };
-
 
     return (
         <div className="max-w-7xl m-auto">
@@ -42,7 +41,11 @@ export default function ExplorePost({ explorePosts }) {
                 </form>
             </div>
 
-            {searchList.length === 0 && <p className="text-black text-center pt-5 text-xl font-semibold">No search Found.</p>}
+            {searchList.length === 0 && (
+                <p className="text-black text-center pt-5 text-xl font-semibold">
+                    No search Found.
+                </p>
+            )}
             <Posts posts={searchList} />
         </div>
     );
