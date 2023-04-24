@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import ConfirmationAlert from "../ConfirmationAlert";
+import EditModal from "../EditModal";
 
 export default function PostItem({
     title,
@@ -14,8 +15,8 @@ export default function PostItem({
 }) {
     const loginInfo = localStorage.getItem("user");
     const userLoginData = JSON.parse(loginInfo);
-
     const [showModal, setShowModal] = useState(false);
+    const [editModal, setEditModal] = useState({ show: false, id: null })
 
     const showModalHandler = () => {
         setShowModal(true);
@@ -24,7 +25,13 @@ export default function PostItem({
     const hideModalHandler = () => {
         setShowModal(false);
     };
+    const editShowModalHandler = (id) => {
+        setEditModal({ show: true, id: id });
+    };
 
+    const editHideModalHandler = () => {
+        setEditModal({ show: false, id: null });
+    };
     return (
         <>
             {showModal && (
@@ -33,6 +40,9 @@ export default function PostItem({
                     onClose={hideModalHandler}
                     onProceed={onDelete}
                 />
+            )}
+            {editModal.show && (
+                <EditModal onClose={editHideModalHandler} id={editModal.id} />
             )}
 
             <div
@@ -63,7 +73,7 @@ export default function PostItem({
 
                             <Button
                                 title="Edit"
-                                onClick={showModalHandler}
+                                onClick={() => editShowModalHandler(id)}
                                 className="bg-[#201d75] hover:bg-[#121056] rounded-md"
                             />
 
