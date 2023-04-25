@@ -27,6 +27,11 @@ export default function CreatedPost({ isCreatedPost }) {
         setCreatedPosts(JSON.parse(localData) || []);
     }, [localStorage.getItem("listOfPosts")]);
 
+    const onEditPost = () => {
+        console.log("Mare vivek ne party devani 6e");
+        let localPosts = JSON.parse(localStorage.getItem("listOfPosts"));
+        setCreatedPosts(localPosts);
+    };
 
     return (
         <div className="max-w-7xl m-auto">
@@ -36,6 +41,7 @@ export default function CreatedPost({ isCreatedPost }) {
             <Posts
                 posts={createdPosts === null ? [] : createdPosts}
                 isCreatedPost={isCreatedPost}
+                onEditPost={onEditPost}
             />
         </div>
     );

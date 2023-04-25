@@ -24,7 +24,6 @@ export default function PostForm({
                     value={enteredData.title}
                     onChange={inputChangeHandler}
                 />
-                {/* <Input type="text" title="Enter Body" name="body" /> */}
                 <div className="relative">
                     <textarea
                         name="body"
@@ -46,7 +45,6 @@ export default function PostForm({
                     type="file"
                     title="Enter Image"
                     name="image"
-                    // value={enteredData.image}
                     onChange={inputChangeHandler}
                 />
                 <div className="flex gap-3 justify-center">
