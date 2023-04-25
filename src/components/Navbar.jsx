@@ -8,9 +8,9 @@ export default function Navbar({ showModalHandler }) {
 
     return (
         <>
-            <nav className="w-full bg-[#201d75] text-white p-4">
+            <nav className="w-full bg-[#201d75] text-white p-3">
                 <div className="max-w-7xl text-md m-auto flex justify-between items-center">
-                    <div className="text-xl font-bold">
+                    <div className="text-3xl font-bold">
                         <Link to="/">BlogPost</Link>
                     </div>
                     <div className="">

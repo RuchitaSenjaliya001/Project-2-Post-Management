@@ -1,7 +1,8 @@
 import React from "react";
 import RootLayout from "./pages/RootLayout";
-import HomePage from "./pages/HomePage";
-import PostDetail from "./components/Posts/PostDetail";
+import { lazy, Suspense } from "react";
+// import HomePage from "./pages/HomePage";
+// import PostDetail from "./components/Posts/PostDetail";
 import LoginPage from "./pages/LoginPage";
 import { loader as exploreLoader } from "./pages/HomePage";
 import Error from "./pages/Error";
@@ -14,13 +15,15 @@ import NewPostPage from "./pages/NewPostPage";
 import PrivateRoute from "./routes/PrivateRoute";
 import { action as newPostAction } from "./pages/NewPostPage";
 
+const HomePage = lazy(() => import("./pages/HomePage"));
+const PostDetail = lazy(() => import("./components/Posts/PostDetail"));
 
 const userLoginData = JSON.parse(localStorage.getItem("user"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    // errorElement: <Error />,
+    errorElement: <Error />,
     element: (
       <PrivateRoute>
         <RootLayout
@@ -35,7 +38,13 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <PrivateRoute>
-            <HomePage />
+            <Suspense
+              fallback={
+                <p className="text-center text-xl font-bold pt-5">Loading</p>
+              }
+            >
+              <HomePage />
+            </Suspense>
           </PrivateRoute>
         ),
         loader: exploreLoader,
@@ -45,7 +54,15 @@ const router = createBrowserRouter([
         path: ":postId",
         element: (
           <PrivateRoute>
-            <PostDetail />
+            <Suspense
+              fallback={
+                <p className="text-center text-xl font-bold pt-5 ">
+                  Loading...
+                </p>
+              }
+            >
+              <PostDetail />
+            </Suspense>
           </PrivateRoute>
         ),
       },

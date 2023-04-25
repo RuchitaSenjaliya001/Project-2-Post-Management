@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostForm from "./UI/PostForm";
 import Modal from "./UI/Modal";
+import { useNavigate } from "react-router-dom";
 
 const getLocalItems = () => {
     let list = localStorage.getItem("listOfPosts");
@@ -13,6 +14,7 @@ const getLocalItems = () => {
 };
 
 export default function EditModal({ id, onClose, onEditPost }) {
+    const navigate = useNavigate()
     const [enteredData, setEnteredData] = useState({});
     const [postItems, setPostItems] = useState(getLocalItems());
 
@@ -48,6 +50,7 @@ export default function EditModal({ id, onClose, onEditPost }) {
         localStorage.setItem("listOfPosts", JSON.stringify(updatedPost));
         setPostItems(updatedPost);
         onClose();
+        navigate('/')
         onEditPost();
     };
 
