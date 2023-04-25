@@ -19,6 +19,7 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const PostDetail = lazy(() => import("./components/Posts/PostDetail"));
 
 const userLoginData = JSON.parse(localStorage.getItem("user"));
+console.log(userLoginData);
 
 const router = createBrowserRouter([
   {
