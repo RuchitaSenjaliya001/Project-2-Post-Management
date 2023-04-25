@@ -23,6 +23,7 @@ export default function CreatedPost({ isCreatedPost }) {
     const [createdPosts, setCreatedPosts] = useState([]);
 
     const localData = localStorage.getItem("listOfPosts");
+
     useEffect(() => {
         setCreatedPosts(JSON.parse(localData) || []);
     }, [localStorage.getItem("listOfPosts")]);

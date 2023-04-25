@@ -47,8 +47,8 @@ export default function EditModal({ id, onClose, onEditPost }) {
         updatedPost[index] = enteredData;
         localStorage.setItem("listOfPosts", JSON.stringify(updatedPost));
         setPostItems(updatedPost);
-        onEditPost()
         onClose();
+        onEditPost();
     };
 
     return (
@@ -63,3 +63,4 @@ export default function EditModal({ id, onClose, onEditPost }) {
         </Modal>
     );
 }
+

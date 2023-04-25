@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { MdMenu } from "react-icons/md";
 
@@ -17,11 +17,11 @@ export default function Navbar({ showModalHandler }) {
 
                         <ul className="flex space-x-3 md:flex sm:space-x-6 items-center ">
                             <li className="text-sm sm:text-base hover:font-semibold">
-                                <Link to="/">Home</Link>
+                                <NavLink className={({ isActive }) => isActive ? 'font-bold' : ''} to="/">Home</NavLink>
                             </li>
                             {userLoginData.role === "admin" && (
                                 <li className="hover:font-semibold text-sm sm:text-base">
-                                    <Link to="/new-post">New post</Link>
+                                    <NavLink className={({ isActive }) => isActive ? 'font-bold' : ''} to="/new-post">New post</NavLink>
                                 </li>
                             )}
                             <li className="hover:font-semibold text-sm sm:text-base">
