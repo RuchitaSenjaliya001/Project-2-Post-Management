@@ -3,7 +3,7 @@ import PostItem from "./PostItem";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 
-export default function Posts({ posts, isCreatedPost }) {
+export default function Posts({ posts, isCreatedPost, onEditPost }) {
     const navigate = useNavigate();
     const [postData, setPostData] = useState(posts);
 
@@ -61,6 +61,7 @@ export default function Posts({ posts, isCreatedPost }) {
                                     id={post.id}
                                     onDelete={() => deleteHandler(post.id)}
                                     isCreatedPost={isCreatedPost}
+                                    onEditPost={onEditPost}
                                 />
                             );
                         })}
