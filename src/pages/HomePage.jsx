@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
 import { ToastContainer, toast } from "react-toastify";
+import Footer from "../components/UI/Footer";
 // import { redirect } from "react-router-dom";
 
 export default function HomePage() {
@@ -23,6 +24,7 @@ export default function HomePage() {
         <>
             <CreatedPost isCreatedPost={isCreatedPost} />
             <ExplorePost explorePosts={posts} />
+            <Footer />
             {/* {alert("home")} */}
             <ToastContainer
                 position="top-center"
