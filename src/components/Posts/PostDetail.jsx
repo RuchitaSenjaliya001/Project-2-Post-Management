@@ -11,8 +11,8 @@ export default function PostDetail() {
     const [editModal, setEditModal] = useState({ show: false, id: null });
     const [showModal, setShowModal] = useState(false);
 
+    const postData = JSON.parse(localStorage.getItem("listOfPosts"));
     useEffect(() => {
-        const postData = JSON.parse(localStorage.getItem("listOfPosts"));
         const filteredPost = postData.filter((data) => data.id == params.postId);
         setCurrentPost(...filteredPost);
     }, [params, localStorage]);
