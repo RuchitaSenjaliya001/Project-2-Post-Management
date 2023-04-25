@@ -52,16 +52,16 @@ export default function PostForm({
                 <div className="flex gap-3 justify-center">
                     <Button
                         type="submit"
-                        onClick={!isEdit && notify}
+                        onClick={!isEdit ? notify : undefined}
                         title={isEdit ? "Update" : "Add Post"}
-                        className="w-1/2 bg-[#201d75] py-2 mt-3"
+                        className="w-1/2 bg-[#201d75] hover:bg-[#121056] py-2 mt-3"
                     />
                     {isEdit && (
                         <Button
                             type="button"
                             title="Cancel"
                             onClick={onClose}
-                            className="w-1/2 py-2 bg-red-500 mt-3"
+                            className="w-1/2 py-2 bg-red-500 hover:bg-red-600 mt-3"
                         />
                     )}
                 </div>
