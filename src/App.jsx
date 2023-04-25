@@ -1,8 +1,6 @@
 import React from "react";
 import RootLayout from "./pages/RootLayout";
 import { lazy, Suspense } from "react";
-// import HomePage from "./pages/HomePage";
-// import PostDetail from "./components/Posts/PostDetail";
 import LoginPage from "./pages/LoginPage";
 import { loader as exploreLoader } from "./pages/HomePage";
 import Error from "./pages/Error";
@@ -19,7 +17,6 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const PostDetail = lazy(() => import("./components/Posts/PostDetail"));
 
 const userLoginData = JSON.parse(localStorage.getItem("user"));
-console.log(userLoginData);
 
 const router = createBrowserRouter([
   {

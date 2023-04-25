@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Posts from "./Posts";
 import { FaSearch } from "react-icons/fa";
 
@@ -7,7 +7,6 @@ export default function ExplorePost({ explorePosts }) {
     const [searchList, setSearchList] = useState(explorePosts);
 
     const searchChangeHandler = (e) => {
-        // setSearchInput(e.target.value);
         const filteredPost = explorePosts.filter((post) => {
             if (e.target.value === "") {
                 return explorePosts;

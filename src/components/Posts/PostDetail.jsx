@@ -9,7 +9,6 @@ export default function PostDetail() {
     const params = useParams();
     const navigate = useNavigate();
     const [editModal, setEditModal] = useState({ show: false, id: null });
-
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {

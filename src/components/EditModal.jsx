@@ -14,7 +14,7 @@ const getLocalItems = () => {
 };
 
 export default function EditModal({ id, onClose, onEditPost }) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [enteredData, setEnteredData] = useState({});
     const [postItems, setPostItems] = useState(getLocalItems());
 
@@ -50,7 +50,7 @@ export default function EditModal({ id, onClose, onEditPost }) {
         localStorage.setItem("listOfPosts", JSON.stringify(updatedPost));
         setPostItems(updatedPost);
         onClose();
-        navigate('/')
+        navigate("/");
         onEditPost();
     };
 
@@ -66,4 +66,3 @@ export default function EditModal({ id, onClose, onEditPost }) {
         </Modal>
     );
 }
-

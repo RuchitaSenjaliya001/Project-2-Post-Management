@@ -12,7 +12,7 @@ export default function PostItem({
     onDelete,
     isCreatedPost,
     onClick,
-    onEditPost
+    onEditPost,
 }) {
     const loginInfo = localStorage.getItem("user");
     const userLoginData = JSON.parse(loginInfo);
@@ -43,7 +43,11 @@ export default function PostItem({
                 />
             )}
             {editModal.show && (
-                <EditModal onClose={editHideModalHandler} id={editModal.id} onEditPost={onEditPost} />
+                <EditModal
+                    onClose={editHideModalHandler}
+                    id={editModal.id}
+                    onEditPost={onEditPost}
+                />
             )}
 
             <div
@@ -71,7 +75,6 @@ export default function PostItem({
                                 className="bg-red-500 hover:bg-red-600 rounded-md"
                                 onClick={showModalHandler}
                             />
-
                             <Button
                                 title="Edit"
                                 onClick={() => editShowModalHandler(id)}
