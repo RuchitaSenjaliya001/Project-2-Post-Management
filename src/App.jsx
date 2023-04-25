@@ -15,7 +15,7 @@ import NewPostPage from "./pages/NewPostPage";
 import PrivateRoute from "./routes/PrivateRoute";
 import { action as newPostAction } from "./pages/NewPostPage";
 
-const postData = JSON.parse(localStorage.getItem("listOfPosts"));
+
 const userLoginData = JSON.parse(localStorage.getItem("user"));
 
 const router = createBrowserRouter([
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         path: ":postId",
         element: (
           <PrivateRoute>
-            <PostDetail postData={postData} />
+            <PostDetail />
           </PrivateRoute>
         ),
       },

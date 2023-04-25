@@ -47,6 +47,7 @@ export default function EditModal({ id, onClose }) {
         updatedPost[index] = enteredData;
         localStorage.setItem("listOfPosts", JSON.stringify(updatedPost));
         setPostItems(updatedPost);
+        // onEditPost()
         onClose();
     };
 

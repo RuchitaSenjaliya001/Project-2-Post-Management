@@ -26,7 +26,6 @@ export default function Login() {
         otp: Yup.number()
             .required("Please enter valid OTP")
             .test("Notequal", "OTP does not match", (val) => {
-                // console.log(val, generatedOtp);
                 return val == generatedOtp;
             }),
         role: Yup.string()
@@ -46,10 +45,8 @@ export default function Login() {
         handleBlur,
         handleSubmit,
         errors,
-        isValidating,
         isValid,
         dirty,
-        isSubmitting,
     } = useFormik({
         initialValues: initialValues,
         validationSchema: loginSchema,
@@ -71,8 +68,6 @@ export default function Login() {
                 onSubmit={handleSubmit}
                 className="w-full lg:w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4"
             >
-                {/* {console.log(isSubmitting, isValid, isValidating, dirty)}
-                {console.log(isSubmitting && isValid && isValidating)} */}
                 <div className="text-center">
                     <h1 className="text-3xl font-bold pb-2">Hello Again,</h1>
                     <p className="text-gray-500 pb-5">Welcome back, let's get started!</p>
@@ -126,15 +121,9 @@ export default function Login() {
                 <Button
                     type="submit"
                     title="Login"
-                    // disabled={isValid}
+                    disabled={!(isValid && dirty)}
                     className="w-1/2 bg-[#201d75] hover:bg-[#121056] disabled:bg-[#7472ad] disabled:cursor-not-allowed"
                 />
-                {/* {isSubmitting ? <Button
-                    type="submit"
-                    title="Login"
-                    className="w-1/2 bg-[#201d75] hover:bg-[#121056]"
-                /> :
-                    <button type="button" class="w-1/2 px-8 py-3 text-white font-semibold cursor-not-allowed bg-[#605f7d] rounded-md focus:outline-none" disabled>Login</button>} */}
             </form>
         </div>
     );

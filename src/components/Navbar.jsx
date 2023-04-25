@@ -13,25 +13,21 @@ export default function Navbar({ showModalHandler }) {
                     <div className="text-xl font-bold">
                         <Link to="/">BlogPost</Link>
                     </div>
-                    <div className="flex">
-                        <div className="md:hidden">
-                            <MdMenu fontSize="30px" />
-                        </div>
-                        <ul className="hidden md:flex space-x-6 items-center">
-                            <li className="hover:font-semibold">
+                    <div className="">
+
+                        <ul className="flex space-x-3 md:flex sm:space-x-6 items-center ">
+                            <li className="text-sm sm:text-base hover:font-semibold">
                                 <Link to="/">Home</Link>
                             </li>
                             {userLoginData.role === "admin" && (
-                                <li className="hover:font-semibold">
+                                <li className="hover:font-semibold text-sm sm:text-base">
                                     <Link to="/new-post">New post</Link>
                                 </li>
                             )}
-                            <li className="hover:font-semibold">
+                            <li className="hover:font-semibold text-sm sm:text-base">
                                 <button onClick={showModalHandler}>Logout</button>
                             </li>
-                            <li className="hover:font-semibold">
-                                <FaUserCircle className="text-2xl" />
-                            </li>
+
                         </ul>
                     </div>
                 </div>

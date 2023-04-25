@@ -19,12 +19,14 @@ const DUMMY = [
 ];
 
 export default function CreatedPost({ isCreatedPost }) {
+
     const [createdPosts, setCreatedPosts] = useState([]);
 
+    const localData = localStorage.getItem("listOfPosts");
     useEffect(() => {
-        const localData = localStorage.getItem("listOfPosts");
         setCreatedPosts(JSON.parse(localData) || []);
     }, [localStorage.getItem("listOfPosts")]);
+
 
     return (
         <div className="max-w-7xl m-auto">

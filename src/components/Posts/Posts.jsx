@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PostItem from "./PostItem";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../UI/Button";
 
 export default function Posts({ posts, isCreatedPost }) {
     const navigate = useNavigate();
-    const [postData, setPostData] = useState(posts === null ? [] : posts);
+    const [postData, setPostData] = useState(posts);
 
     const deleteHandler = (id) => {
         const filteredData = postData.filter((item) => item.id !== id);
@@ -26,9 +27,14 @@ export default function Posts({ posts, isCreatedPost }) {
         <>
             <section className="my-5">
                 {isCreatedPost && postData.length === 0 && (
-                    <p className="text-center font-semibold text-xl">
-                        No post created by admin
-                    </p>
+                    <div className="text-center">
+                        <p className="text-center font-semibold text-xl">
+                            No post created by admin
+                        </p>
+                        <Link to='/new-post'>
+                            <Button type="button" className="bg-[#201d75] hover:bg-[#121056] mt-3" title="Create new post" />
+                        </Link>
+                    </div>
                 )}
                 <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 px-4 lg:grid-cols-3 gap-12 xl:max-w-7xl xl:m-auto">
                     {postData.length > 0 &&

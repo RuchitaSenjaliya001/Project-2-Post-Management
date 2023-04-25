@@ -4,13 +4,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import ConfirmationAlert from "../ConfirmationAlert";
 import EditModal from "../EditModal";
 
-export default function PostDetail({ postData }) {
+export default function PostDetail() {
+
+
     const [currentPost, setCurrentPost] = useState({});
     const params = useParams();
     const navigate = useNavigate();
     const [editModal, setEditModal] = useState({ show: false, id: null });
 
     const [showModal, setShowModal] = useState(false);
+
+    const postData = JSON.parse(localStorage.getItem("listOfPosts"));
 
     useEffect(() => {
         const filteredPost = postData.filter((data) => data.id == params.postId);
