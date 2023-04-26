@@ -61,8 +61,8 @@ export default function PostDetail() {
                 </div>
                 <div className="w-1/2 flex flex-col justify-between">
                     <div className="">
-                        <h1 className="text-3xl font-bold py-2">{currentPost.title}</h1>
-                        <p className="text-md py-2">{currentPost.body}</p>
+                        <h1 className="text-3xl font-bold py-2">{currentPost?.title}</h1>
+                        <p className="text-md py-2">{currentPost?.body}</p>
                     </div>
                     <div className="flex justify-end space-x-5 my-4">
                         <Button
@@ -73,7 +73,7 @@ export default function PostDetail() {
                         <Button
                             title="Edit"
                             className="bg-[#201d75] hover:bg-[#121056]"
-                            onClick={() => editShowModalHandler(currentPost.id)}
+                            onClick={() => editShowModalHandler(currentPost?.id)}
                         />
                     </div>
                 </div>
@@ -81,3 +81,5 @@ export default function PostDetail() {
         </>
     );
 }
+
+
