@@ -6,10 +6,16 @@ export default function ExplorePost({ explorePosts }) {
     const [searchInput, setSearchInput] = useState("");
     const [searchList, setSearchList] = useState(explorePosts);
 
+    useEffect(() => {
+        setSearchList(explorePosts)
+    }, [explorePosts])
+
     const searchChangeHandler = (e) => {
-        const filteredPost = explorePosts.filter((post) => {
+
+        const filteredPost = searchList.filter((post) => {
+
             if (e.target.value === "") {
-                return explorePosts;
+                return searchList;
             }
             return post.title.includes(e.target.value);
         });
@@ -46,6 +52,7 @@ export default function ExplorePost({ explorePosts }) {
                 </p>
             )}
             <Posts posts={searchList} />
+
         </div>
     );
 }

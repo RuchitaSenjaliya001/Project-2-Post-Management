@@ -45,7 +45,7 @@ export default function PostDetail() {
                 <ConfirmationAlert
                     message="Are you sure you want to delete this post?"
                     onClose={hideModalHandler}
-                    onProceed={() => deletePostHandler(currentPost.id)}
+                    onProceed={() => deletePostHandler(currentPost?.id)}
                 />
             )}
             {editModal.show && (
