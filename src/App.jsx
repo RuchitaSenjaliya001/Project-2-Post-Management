@@ -21,7 +21,7 @@ const userLoginData = JSON.parse(localStorage.getItem("user"));
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <Error />,
+    // errorElement: <Error />,
     element: (
       <PrivateRoute>
         <RootLayout

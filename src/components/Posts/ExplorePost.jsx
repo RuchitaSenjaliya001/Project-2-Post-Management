@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Posts from "./Posts";
 import { FaSearch } from "react-icons/fa";
 

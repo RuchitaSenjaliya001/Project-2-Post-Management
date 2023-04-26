@@ -22,8 +22,6 @@ export default function HomePage() {
     }, [userLoginData]);
 
     const data = useLoaderData();
-
-    const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [postPerPage, setPostPerPage] = useState(10)
 
@@ -50,10 +48,8 @@ export default function HomePage() {
         <>
             <CreatedPost isCreatedPost={isCreatedPost} />
 
-            <ExplorePost explorePosts={currentPost} loading={loading} />
-            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
             <Suspense fallback={<p className="text-center text-xl font-bold pt-5 ">Fetching Posts...</p>}>
-                <ExplorePost explorePosts={posts} />
+                <ExplorePost explorePosts={currentPost} />
             </Suspense>
             <ToastContainer
                 position="top-center"
@@ -67,6 +63,7 @@ export default function HomePage() {
                 pauseOnHover={false}
                 theme="light"
             />
+            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
         </>
     );
 }
