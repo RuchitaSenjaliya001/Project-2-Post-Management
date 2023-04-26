@@ -6,10 +6,12 @@ export default function ExplorePost({ explorePosts }) {
     const [searchInput, setSearchInput] = useState("");
     const [searchList, setSearchList] = useState(explorePosts);
 
-    console.log(searchList);
+    useEffect(() => {
+        setSearchList(explorePosts)
+    }, [explorePosts])
 
     const searchChangeHandler = (e) => {
-        const filteredPost = explorePosts.filter((post) => {
+        const filteredPost = searchList.filter((post) => {
             if (e.target.value === "") {
                 return searchList;
             }

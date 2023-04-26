@@ -17,25 +17,16 @@ export default function HomePage() {
     }, [userLoginData]);
 
     const data = useLoaderData();
-    // const [posts, setPosts] = useState(data)
+
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [postPerPage, setPostPerPage] = useState(10)
-
-    // useEffect(() => {
-    //     const fetchPost = () => {
-    //         setLoading(true)
-    //         setPosts(data)
-    //         setLoading(false)
-    //     }
-    //     fetchPost();
-
-    // }, [])
 
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
     const totalPage = 10
+
 
     const prevPage = () => {
         setCurrentPage(currentPage - 1);
