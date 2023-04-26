@@ -6,22 +6,20 @@ export default function ExplorePost({ explorePosts }) {
     const [searchInput, setSearchInput] = useState("");
     const [searchList, setSearchList] = useState(explorePosts);
 
-    useEffect(() => {
-        setSearchList(explorePosts)
-    }, [explorePosts])
-
     const searchChangeHandler = (e) => {
-
-        const filteredPost = searchList.filter((post) => {
-
+        const filteredPost = explorePosts.filter((post) => {
             if (e.target.value === "") {
-                return searchList;
+                return explorePosts;
             }
             return post.title.includes(e.target.value);
         });
         setSearchInput(e.target.value);
         setSearchList(filteredPost);
     };
+
+    useEffect(() => {
+        setSearchList(explorePosts);
+    }, [explorePosts]);
 
     return (
         <div className="max-w-7xl m-auto">
@@ -52,7 +50,6 @@ export default function ExplorePost({ explorePosts }) {
                 </p>
             )}
             <Posts posts={searchList} />
-
         </div>
     );
 }
