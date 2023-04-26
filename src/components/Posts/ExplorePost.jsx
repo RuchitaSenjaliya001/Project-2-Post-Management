@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Posts from "./Posts";
 import { FaSearch } from "react-icons/fa";
-import Pagination from "../UI/Pagination";
 
 export default function ExplorePost({ explorePosts }) {
     const [searchInput, setSearchInput] = useState("");
     const [searchList, setSearchList] = useState(explorePosts);
 
+    console.log(searchList);
+
     const searchChangeHandler = (e) => {
-        // setSearchInput(e.target.value);
         const filteredPost = explorePosts.filter((post) => {
             if (e.target.value === "") {
-                return explorePosts;
+                return searchList;
             }
             return post.title.includes(e.target.value);
         });
@@ -48,7 +48,7 @@ export default function ExplorePost({ explorePosts }) {
                 </p>
             )}
             <Posts posts={searchList} />
-            <Pagination />
+
         </div>
     );
 }

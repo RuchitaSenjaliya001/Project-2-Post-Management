@@ -28,7 +28,6 @@ export default function CreatedPost({ isCreatedPost }) {
     }, [localStorage.getItem("listOfPosts")]);
 
     const onEditPost = () => {
-        console.log("Mare vivek ne party devani 6e");
         let localPosts = JSON.parse(localStorage.getItem("listOfPosts"));
         setCreatedPosts(localPosts);
     };

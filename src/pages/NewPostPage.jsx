@@ -15,7 +15,6 @@ export async function action({ request }) {
         body: data.get("body"),
         image: data.get("image"),
     };
-    console.log(postData);
     const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
         method: "POST",
         body: JSON.stringify(postData),
@@ -28,6 +27,5 @@ export async function action({ request }) {
         toast.error("Could not send data");
     }
     toast.success("Post added succesfully");
-    console.log("data added succesfully");
     return redirect("/");
 }

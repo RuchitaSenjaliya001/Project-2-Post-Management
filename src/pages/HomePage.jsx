@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
-import { ToastContainer, toast } from "react-toastify";
-// import { redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Pagination from "../components/UI/Pagination";
 
 export default function HomePage() {
 
@@ -17,13 +17,44 @@ export default function HomePage() {
     }, [userLoginData]);
 
     const data = useLoaderData();
-    const posts = data.slice(0, 10);
+    // const [posts, setPosts] = useState(data)
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPerPage, setPostPerPage] = useState(10)
+
+    // useEffect(() => {
+    //     const fetchPost = () => {
+    //         setLoading(true)
+    //         setPosts(data)
+    //         setLoading(false)
+    //     }
+    //     fetchPost();
+
+    // }, [])
+
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
+    const totalPage = 10
+
+    const prevPage = () => {
+        setCurrentPage(currentPage - 1);
+        if (currentPage <= 1) {
+            setCurrentPage(1);
+        }
+    };
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1);
+        if (currentPage >= totalPage) {
+            setCurrentPage(totalPage);
+        }
+    };
 
     return (
         <>
             <CreatedPost isCreatedPost={isCreatedPost} />
-            <ExplorePost explorePosts={posts} />
-            {/* {alert("home")} */}
+            <ExplorePost explorePosts={currentPost} loading={loading} />
+            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

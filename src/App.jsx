@@ -7,7 +7,6 @@ import { loader as exploreLoader } from "./pages/HomePage";
 import Error from "./pages/Error";
 import {
   Navigate,
-  Route,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
@@ -21,7 +20,7 @@ const userLoginData = JSON.parse(localStorage.getItem("user"));
 const router = createBrowserRouter([
   {
     path: "/",
-    // errorElement: <Error />,
+    errorElement: <Error />,
     element: (
       <PrivateRoute>
         <RootLayout
