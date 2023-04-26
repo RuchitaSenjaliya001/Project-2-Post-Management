@@ -64,6 +64,7 @@ export default function HomePage() {
                 theme="light"
             />
             <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
+            <Footer />
         </>
     );
 }
