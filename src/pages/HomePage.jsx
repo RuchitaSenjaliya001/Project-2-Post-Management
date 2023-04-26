@@ -2,10 +2,13 @@ import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 // import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
-import { ToastContainer, toast } from "react-toastify";
+
+import { ToastContainer } from "react-toastify";
+import Pagination from "../components/UI/Pagination";
 import Footer from "../components/UI/Footer";
 
 const ExplorePost = lazy(() => import('../components/Posts/ExplorePost'))
+
 
 export default function HomePage() {
 
@@ -19,15 +22,39 @@ export default function HomePage() {
     }, [userLoginData]);
 
     const data = useLoaderData();
-    const posts = data.slice(0, 10);
+
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPerPage, setPostPerPage] = useState(10)
+
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
+    const totalPage = 10
+
+
+    const prevPage = () => {
+        setCurrentPage(currentPage - 1);
+        if (currentPage <= 1) {
+            setCurrentPage(1);
+        }
+    };
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1);
+        if (currentPage >= totalPage) {
+            setCurrentPage(totalPage);
+        }
+    };
 
     return (
         <>
             <CreatedPost isCreatedPost={isCreatedPost} />
+
+            <ExplorePost explorePosts={currentPost} loading={loading} />
+            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
             <Suspense fallback={<p className="text-center text-xl font-bold pt-5 ">Fetching Posts...</p>}>
                 <ExplorePost explorePosts={posts} />
             </Suspense>
-            <Footer />
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
