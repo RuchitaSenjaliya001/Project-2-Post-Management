@@ -12,10 +12,10 @@ export default function ExplorePost({ explorePosts }) {
 
     const searchChangeHandler = (e) => {
 
-        const filteredPost = searchList.filter((post) => {
+        const filteredPost = explorePosts.filter((post) => {
 
             if (e.target.value === "") {
-                return searchList;
+                return explorePosts;
             }
             return post.title.includes(e.target.value);
         });
