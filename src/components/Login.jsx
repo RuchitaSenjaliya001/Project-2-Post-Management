@@ -21,7 +21,7 @@ export default function Login() {
 
     const loginSchema = Yup.object({
         mobileNumber: Yup.string()
-            .matches(mobileRegex, "Phone number is not valid")
+            .matches(mobileRegex, "Please enter 10 digit valid mobile number")
             .required("Please enter mobile number"),
         otp: Yup.number()
             .required("Please enter valid OTP")
@@ -61,9 +61,8 @@ export default function Login() {
     return (
         <div className="flex">
             <div className="hidden lg:w-1/2 bg-[#201d75] min-h-screen text-white lg:flex lg:justify-center lg:items-center">
-                <img src={content} alt="" className="w-1/2" />
+                <img src={content} alt="" className="w-[70%]" />
             </div>
-
             <form
                 onSubmit={handleSubmit}
                 className="w-full lg:w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4"
@@ -76,14 +75,14 @@ export default function Login() {
                     type="text"
                     name="mobileNumber"
                     title="Mobile Number"
-                    className="w-1/2"
+                    className="w-[80%] md:w-1/2"
                     value={values.mobileNumber}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     isTouched={touched.mobileNumber}
                     errorMsg={errors.mobileNumber}
                 />
-                <div className="w-1/2">
+                <div className="w-[80%] md:w-1/2">
                     <select
                         name="role"
                         id="role"
@@ -100,18 +99,17 @@ export default function Login() {
                         <p className="text-red-500 text-sm">{errors.role}</p>
                     ) : null}
                 </div>
-
                 <Button
                     type="button"
                     title="Generate OTP"
-                    className="w-1/2 bg-[#201d75] hover:bg-[#121056]"
+                    className="w-[80%] md:w-1/2 bg-[#201d75] hover:bg-[#121056] "
                     onClick={otpGenerator}
                 />
                 <Input
                     type="text"
                     name="otp"
                     title="Enter OTP"
-                    className="w-1/2"
+                    className="w-[80%] md:w-1/2"
                     value={values.otp}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -122,7 +120,7 @@ export default function Login() {
                     type="submit"
                     title="Login"
                     disabled={!(isValid && dirty)}
-                    className="w-1/2 bg-[#201d75] hover:bg-[#121056] disabled:bg-[#7472ad] disabled:cursor-not-allowed"
+                    className="w-[80%] md:w-1/2 bg-[#201d75] hover:bg-[#121056] disabled:bg-[#7472ad] disabled:cursor-not-allowed"
                 />
             </form>
         </div>

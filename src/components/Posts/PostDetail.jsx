@@ -9,7 +9,6 @@ export default function PostDetail() {
     const params = useParams();
     const navigate = useNavigate();
     const [editModal, setEditModal] = useState({ show: false, id: null });
-
     const [showModal, setShowModal] = useState(false);
 
     const postData = JSON.parse(localStorage.getItem("listOfPosts"));
@@ -46,26 +45,26 @@ export default function PostDetail() {
                 <ConfirmationAlert
                     message="Are you sure you want to delete this post?"
                     onClose={hideModalHandler}
-                    onProceed={() => deletePostHandler(currentPost.id)}
+                    onProceed={() => deletePostHandler(currentPost?.id)}
                 />
             )}
             {editModal.show && (
                 <EditModal onClose={editHideModalHandler} id={editModal.id} />
             )}
-            <div className="max-w-7xl m-auto md:flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-10 p-5">
-                <div className="md:w-1/2">
+            <div className="max-w-7xl m-auto flex gap-8 border-2 justify-between shadow-xl rounded-lg mt-10 p-5">
+                <div className="w-1/2">
                     <img
                         src={currentPost?.image}
                         alt=""
                         className="w-full h-[400px] object-cover rounded-md"
                     />
                 </div>
-                <div className="md:w-1/2 flex flex-col md:justify-between">
+                <div className="w-1/2 flex flex-col justify-between">
                     <div className="">
-                        <h1 className="text-center md:text-left text-3xl font-bold py-2">{currentPost.title}</h1>
-                        <p className="text-md py-2">{currentPost.body}</p>
+                        <h1 className="text-3xl font-bold py-2">{currentPost?.title}</h1>
+                        <p className="text-md py-2">{currentPost?.body}</p>
                     </div>
-                    <div className="flex justify-center md:justify-end space-x-5 my-4">
+                    <div className="flex justify-end space-x-5 my-4">
                         <Button
                             title="Delete"
                             onClick={showModalHandler}
@@ -74,7 +73,7 @@ export default function PostDetail() {
                         <Button
                             title="Edit"
                             className="bg-[#201d75] hover:bg-[#121056]"
-                            onClick={() => editShowModalHandler(currentPost.id)}
+                            onClick={() => editShowModalHandler(currentPost?.id)}
                         />
                     </div>
                 </div>
@@ -82,5 +81,3 @@ export default function PostDetail() {
         </>
     );
 }
-
-

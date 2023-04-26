@@ -6,7 +6,7 @@ export default function Button({ title, type, className, onClick, disabled }) {
             type={type}
             onClick={onClick}
             disabled={disabled}
-            className={`px-5 py-2 text-white text-center rounded-md ${className}`}
+            className={`px-5 py-2 text-white text-center rounded-md duration-200 ${className}`}
         >
             {title}
         </button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NewPost from "../components/Posts/NewPost";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
 
 export default function NewPostPage() {

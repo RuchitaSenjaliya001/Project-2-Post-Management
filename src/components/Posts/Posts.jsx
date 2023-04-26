@@ -31,8 +31,12 @@ export default function Posts({ posts, isCreatedPost, onEditPost }) {
                         <p className="text-center font-semibold text-xl">
                             No post created by admin
                         </p>
-                        <Link to='/new-post'>
-                            <Button type="button" className="bg-[#201d75] hover:bg-[#121056] mt-3" title="Create new post" />
+                        <Link to="/new-post">
+                            <Button
+                                type="button"
+                                className="bg-[#201d75] hover:bg-[#121056] mt-3"
+                                title="Create new post"
+                            />
                         </Link>
                     </div>
                 )}

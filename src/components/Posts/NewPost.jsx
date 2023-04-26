@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Input from "../UI/Input";
-import Modal from "../UI/Modal";
-import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../UI/PostForm";
 
@@ -59,7 +56,6 @@ export default function NewPost() {
         }
     };
 
-    // set form data to local storage
     useEffect(() => {
         localStorage.setItem("listOfPosts", JSON.stringify(postItems));
     }, [postItems]);

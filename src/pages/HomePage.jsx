@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import ExplorePost from "../components/Posts/ExplorePost";
+// import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
+
 import { ToastContainer } from "react-toastify";
 import Pagination from "../components/UI/Pagination";
+import Footer from "../components/UI/Footer";
+
+const ExplorePost = lazy(() => import('../components/Posts/ExplorePost'))
+
 
 export default function HomePage() {
 
@@ -44,8 +49,12 @@ export default function HomePage() {
     return (
         <>
             <CreatedPost isCreatedPost={isCreatedPost} />
+
             <ExplorePost explorePosts={currentPost} loading={loading} />
             <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
+            <Suspense fallback={<p className="text-center text-xl font-bold pt-5 ">Fetching Posts...</p>}>
+                <ExplorePost explorePosts={posts} />
+            </Suspense>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
