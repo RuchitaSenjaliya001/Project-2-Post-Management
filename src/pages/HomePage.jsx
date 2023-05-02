@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-// import ExplorePost from "../components/Posts/ExplorePost";
 import CreatedPost from "../components/Posts/CreatedPost";
 
 import { ToastContainer } from "react-toastify";
@@ -12,12 +11,12 @@ const ExplorePost = lazy(() => import('../components/Posts/ExplorePost'))
 
 export default function HomePage() {
 
-    const [isCreatedPost, setIsCreatedPost] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const userLoginData = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         if (userLoginData.role === "admin") {
-            setIsCreatedPost(true);
+            setIsAdmin(true);
         }
     }, [userLoginData]);
 
@@ -46,7 +45,7 @@ export default function HomePage() {
 
     return (
         <>
-            <CreatedPost isCreatedPost={isCreatedPost} />
+            <CreatedPost isAdmin={isAdmin} />
 
             <Suspense fallback={<p className="text-center text-xl font-bold pt-5 ">Fetching Posts...</p>}>
                 <ExplorePost explorePosts={currentPost} />

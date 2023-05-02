@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Posts from "./Posts";
 
-export default function CreatedPost({ isCreatedPost }) {
+export default function CreatedPost({ isAdmin }) {
     const [createdPosts, setCreatedPosts] = useState([]);
     const localData = localStorage.getItem("listOfPosts");
 
@@ -21,7 +21,8 @@ export default function CreatedPost({ isCreatedPost }) {
             </h1>
             <Posts
                 posts={createdPosts === null ? [] : createdPosts}
-                isCreatedPost={isCreatedPost}
+                isAdmin={isAdmin}
+                isLocal={true}
                 onEditPost={onEditPost}
             />
         </div>

@@ -3,9 +3,10 @@ import PostItem from "./PostItem";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 
-export default function Posts({ posts, isCreatedPost, onEditPost }) {
+export default function Posts({ posts, isAdmin, onEditPost, isLocal }) {
     const navigate = useNavigate();
     const [postData, setPostData] = useState(posts);
+    const user = JSON.parse(localStorage.getItem("user"));
 
     const deleteHandler = (id) => {
         const filteredData = postData.filter((item) => item.id !== id);
@@ -18,7 +19,7 @@ export default function Posts({ posts, isCreatedPost, onEditPost }) {
     }, [posts]);
 
     const clickHandler = (id) => {
-        if (isCreatedPost) {
+        if (isLocal) {
             navigate(`${id}`);
         }
     };
@@ -26,18 +27,20 @@ export default function Posts({ posts, isCreatedPost, onEditPost }) {
     return (
         <>
             <section className="my-5">
-                {isCreatedPost && postData.length === 0 && (
+                {postData.length === 0 && (
                     <div className="text-center">
                         <p className="text-center font-semibold text-xl">
                             No post created by admin
                         </p>
-                        <Link to="/new-post">
-                            <Button
-                                type="button"
-                                className="bg-[#201d75] hover:bg-[#121056] mt-3"
-                                title="Create new post"
-                            />
-                        </Link>
+                        {user.role === "admin" && (
+                            <Link to="/new-post">
+                                <Button
+                                    type="button"
+                                    className="bg-[#201d75] hover:bg-[#121056] mt-3"
+                                    title="Create new post"
+                                />
+                            </Link>
+                        )}
                     </div>
                 )}
                 <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 px-4 lg:grid-cols-3 gap-12 xl:max-w-7xl xl:m-auto">
@@ -64,7 +67,8 @@ export default function Posts({ posts, isCreatedPost, onEditPost }) {
                                     onClick={() => clickHandler(post.id)}
                                     id={post.id}
                                     onDelete={() => deleteHandler(post.id)}
-                                    isCreatedPost={isCreatedPost}
+                                    isAdmin={isAdmin}
+                                    isLocal={isLocal}
                                     onEditPost={onEditPost}
                                 />
                             );

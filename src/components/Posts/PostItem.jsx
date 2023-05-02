@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
-import { Link } from "react-router-dom";
 import ConfirmationAlert from "../ConfirmationAlert";
 import EditModal from "../EditModal";
 
@@ -10,12 +9,13 @@ export default function PostItem({
     image,
     id,
     onDelete,
-    isCreatedPost,
+    isAdmin,
+    isLocal,
     onClick,
     onEditPost,
 }) {
-    const loginInfo = localStorage.getItem("user");
-    const userLoginData = JSON.parse(loginInfo);
+    const userLoginData = JSON.parse(localStorage.getItem("user"));
+
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState({ show: false, id: null });
 
@@ -51,10 +51,10 @@ export default function PostItem({
             )}
 
             <div
-                className={`flex flex-col shadow-xl h-full sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isCreatedPost && "cursor-pointer"
+                className={`flex flex-col shadow-xl h-full sm:max-w-xl rounded-lg overflow-hidden pb-5 ${isLocal && "cursor-pointer"
                     }`}
             >
-                <div onClick={onClick}>
+                <div onClick={isLocal && onClick}>
                     <img
                         src={image}
                         alt=""
@@ -68,7 +68,7 @@ export default function PostItem({
                     </div>
                 </div>
                 <div className="flex flex-col justify-end h-full px-5">
-                    {isCreatedPost && userLoginData.role === "admin" && (
+                    {isAdmin && (
                         <div className="flex justify-end space-x-4">
                             <Button
                                 title="Delete"

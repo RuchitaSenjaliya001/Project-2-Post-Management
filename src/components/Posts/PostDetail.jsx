@@ -12,6 +12,8 @@ export default function PostDetail() {
     const [showModal, setShowModal] = useState(false);
 
     const postData = JSON.parse(localStorage.getItem("listOfPosts"));
+    const user = JSON.parse(localStorage.getItem("user"));
+
     useEffect(() => {
         const filteredPost = postData.filter((data) => data.id == params.postId);
         setCurrentPost(...filteredPost);
@@ -64,7 +66,7 @@ export default function PostDetail() {
                         <h1 className="text-3xl font-bold py-2">{currentPost?.title}</h1>
                         <p className="text-md py-2">{currentPost?.body}</p>
                     </div>
-                    <div className="flex justify-end space-x-5 my-4">
+                    {user.role === 'admin' && <div className="flex justify-end space-x-5 my-4">
                         <Button
                             title="Delete"
                             onClick={showModalHandler}
@@ -75,7 +77,7 @@ export default function PostDetail() {
                             className="bg-[#201d75] hover:bg-[#121056]"
                             onClick={() => editShowModalHandler(currentPost?.id)}
                         />
-                    </div>
+                    </div>}
                 </div>
             </div>
         </>
