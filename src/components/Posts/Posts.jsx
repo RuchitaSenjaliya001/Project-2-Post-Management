@@ -27,7 +27,7 @@ export default function Posts({ posts, isAdmin, onEditPost, isLocal }) {
     return (
         <>
             <section className="my-5">
-                {postData.length === 0 && (
+                {isAdmin && postData.length === 0 && (
                     <div className="text-center">
                         <p className="text-center font-semibold text-xl">
                             No post created by admin
