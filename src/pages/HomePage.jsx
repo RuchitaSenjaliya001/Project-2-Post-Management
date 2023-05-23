@@ -1,10 +1,11 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CreatedPost from "../components/Posts/CreatedPost";
 
 import { ToastContainer } from "react-toastify";
 import Pagination from "../components/UI/Pagination";
 import Footer from "../components/UI/Footer";
+import ModeContext from "../context/mode-context";
 
 const ExplorePost = lazy(() => import('../components/Posts/ExplorePost'))
 
@@ -13,6 +14,8 @@ export default function HomePage() {
 
     const [isAdmin, setIsAdmin] = useState(false);
     const userLoginData = JSON.parse(localStorage.getItem("user"));
+
+    const ctx = useContext(ModeContext)
 
     useEffect(() => {
         if (userLoginData.role === "admin") {
@@ -44,11 +47,12 @@ export default function HomePage() {
     };
 
     return (
-        <>
-            <CreatedPost isAdmin={isAdmin} />
+        <div className={`${ctx.mode === 'dark' && ' bg-gradient-to-b from-[#1a2338] via-[#1b3576] to-[#1a2338]'}`}>
+            {/* <div className={`${ctx.mode === 'dark' && 'bg-[#1a2338]'}`}> */}
+            <CreatedPost isAdmin={isAdmin} mode={ctx.mode} />
 
             <Suspense fallback={<p className="text-center text-xl font-bold pt-5 ">Fetching Posts...</p>}>
-                <ExplorePost explorePosts={currentPost} />
+                <ExplorePost explorePosts={currentPost} mode={ctx.mode} />
             </Suspense>
             <ToastContainer
                 position="top-center"
@@ -60,11 +64,11 @@ export default function HomePage() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover={false}
-                theme="light"
+                theme={`${ctx.mode === 'dark' ? 'dark' : 'light'}`}
             />
-            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} />
-            <Footer />
-        </>
+            <Pagination prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPage={totalPage} mode={ctx.mode} />
+            <Footer mode={ctx.mode} />
+        </div>
     );
 }
 

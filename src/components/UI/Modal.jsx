@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import ReactDOM from "react-dom";
+import ModeContext from "../../context/mode-context";
 const Backdrop = (props) => {
     return (
         <div
@@ -10,8 +11,9 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
+    const ctx = useContext(ModeContext)
     return (
-        <div className="w-[90%] left-[5%] fixed top-[20vh] md:left-[31%] md:w-[40%] bg-white p-4 rounded-md z-30 duration-300 ease-out">
+        <div className={`w-[90%] left-[5%] fixed top-[20vh] md:left-[31%] ${ctx.mode === 'dark' ? 'bg-[#1a2338] text-white' : 'bg-white'} md:w-[40%] p-4 rounded-md z-30 duration-300 ease-out`}>
             <div className="content">{props.children}</div>
         </div>
     );
@@ -19,15 +21,16 @@ const ModalOverlay = (props) => {
 
 const portalElement = document.getElementById("overlays");
 
-export default function Modal(props) {
+export default function Modal({ onClick, children }) {
+
     return (
         <Fragment>
             {ReactDOM.createPortal(
-                <Backdrop onClick={props.onClick} />,
+                <Backdrop onClick={onClick} />,
                 portalElement
             )}
             {ReactDOM.createPortal(
-                <ModalOverlay>{props.children}</ModalOverlay>,
+                <ModalOverlay >{children}</ModalOverlay>,
                 portalElement
             )}
         </Fragment>

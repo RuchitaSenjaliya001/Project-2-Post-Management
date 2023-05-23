@@ -5,6 +5,7 @@ export default function Pagination({
     prevPage,
     nextPage,
     currentPage,
+    mode,
     totalPage,
 }) {
     return (
@@ -15,9 +16,9 @@ export default function Pagination({
                     onClick={prevPage}
                     type="button"
                     title="PREV"
-                    className="bg-[#201d75] hover:bg-[#121056] disabled:bg-[#7472ad] disabled:cursor-not-allowed"
+                    className={`${mode === 'dark' ? 'bg-[#6366F1] hover:bg-[#454bf7]' : 'bg-[#201D75] hover:bg-[#121056]'} disabled:bg-gray-400 disabled:cursor-not-allowed`}
                 ></Button>
-                <p>
+                <p className={`${mode === 'dark' ? 'text-white' : 'text-black'}`}>
                     {currentPage} of {totalPage}
                 </p>
                 <Button
@@ -25,7 +26,7 @@ export default function Pagination({
                     disabled={currentPage === 10}
                     type="button"
                     title="NEXT"
-                    className="bg-[#201d75] hover:bg-[#121056] disabled:bg-[#7472ad] disabled:cursor-not-allowed"
+                    className={`${mode === 'dark' ? 'bg-[#6366F1] hover:bg-[#454bf7]' : 'bg-[#201D75] hover:bg-[#121056]'} disabled:bg-gray-400 disabled:cursor-not-allowed`}
                 ></Button>
             </div>
         </>
