@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "./UI/Button";
 import Input from "./UI/Input";
 import content from "../assets/content.png";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ModeContext from "../context/mode-context";
 
 const initialValues = {
     mobileNumber: "",
@@ -58,14 +59,16 @@ export default function Login() {
         },
     });
 
+    const ctx = useContext(ModeContext)
+
     return (
         <div className="flex">
-            <div className="hidden lg:w-1/2 bg-[#201d75] min-h-screen text-white lg:flex lg:justify-center lg:items-center">
+            <div className={`hidden lg:w-1/2 ${ctx.mode === 'dark' ? 'bg-[#0B1120]' : 'bg-[#201d75]'} min-h-screen text-white lg:flex lg:justify-center lg:items-center`}>
                 <img src={content} alt="" className="w-[70%]" />
             </div>
             <form
                 onSubmit={handleSubmit}
-                className="w-full lg:w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4"
+                className={`w-full ${ctx.mode === 'dark' ? 'bg-[#1A2642] text-white' : 'bg-white'} lg:w-1/2 min-h-screen flex flex-col items-center justify-center space-y-4`}
             >
                 <div className="text-center">
                     <h1 className="text-3xl font-bold pb-2">Hello Again,</h1>
@@ -86,7 +89,7 @@ export default function Login() {
                     <select
                         name="role"
                         id="role"
-                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-md border-2 border-gray-500 focus:outline-none focus:ring-0 focus:border-blue-600"
+                        className={`${ctx.mode === 'dark' ? 'bg-[#0B1120] text-white' : 'bg-transparent text-gray-900'} block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900  rounded-md border-2 border-gray-500 focus:outline-none focus:ring-0 focus:border-blue-600`}
                         value={values.role}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -102,7 +105,7 @@ export default function Login() {
                 <Button
                     type="button"
                     title="Generate OTP"
-                    className="w-[80%] md:w-1/2 bg-[#201d75] hover:bg-[#121056] "
+                    className={`${ctx.mode === 'dark' ? 'bg-[#6366F1] hover:bg-[#454bf7]' : 'bg-[#201D75] hover:bg-[#121056]'} disabled:bg-gray-400 disabled:cursor-not-allowed w-[80%] md:w-1/2`}
                     onClick={otpGenerator}
                 />
                 <Input

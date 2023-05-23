@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "./UI/Modal";
 import Button from "./UI/Button";
+import ModeContext from "../context/mode-context";
 
 export default function ConfirmationAlert({ message, onClose, onProceed }) {
+    const ctx = useContext(ModeContext)
     return (
         <>
             <Modal onClick={onClose}>
@@ -10,7 +12,7 @@ export default function ConfirmationAlert({ message, onClose, onProceed }) {
                 <div className="flex space-x-5 my-4 justify-center">
                     <Button
                         title="Yes"
-                        className="bg-[#201d75] hover:bg-[#121056]"
+                        className={`${ctx.mode === 'dark' ? 'bg-[#6366F1] hover:bg-[#5157f7]' : 'bg-[#201D75] hover:bg-[#121056]'}`}
                         onClick={onProceed}
                     />
                     <Button

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PostForm from "./UI/PostForm";
 import Modal from "./UI/Modal";
 import { useNavigate } from "react-router-dom";
+import ModeContext from "../context/mode-context";
 
 const getLocalItems = () => {
     let list = localStorage.getItem("listOfPosts");
@@ -15,6 +16,7 @@ const getLocalItems = () => {
 
 export default function EditModal({ id, onClose, onEditPost }) {
     const navigate = useNavigate();
+    const ctx = useContext(ModeContext)
     const [enteredData, setEnteredData] = useState({});
     const [postItems, setPostItems] = useState(getLocalItems());
 
@@ -55,9 +57,10 @@ export default function EditModal({ id, onClose, onEditPost }) {
     };
 
     return (
-        <Modal onClick={onClose}>
+        <Modal onClick={onClose} mode={ctx.mode}>
             <PostForm
                 enteredData={enteredData}
+                mode={ctx.mode}
                 inputChangeHandler={inputChangeHandler}
                 addPostHandler={editPostHandler}
                 isEdit={true}

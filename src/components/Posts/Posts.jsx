@@ -3,7 +3,7 @@ import PostItem from "./PostItem";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 
-export default function Posts({ posts, isAdmin, onEditPost, isLocal }) {
+export default function Posts({ posts, isAdmin, onEditPost, isLocal, mode }) {
     const navigate = useNavigate();
     const [postData, setPostData] = useState(posts);
     const user = JSON.parse(localStorage.getItem("user"));
@@ -29,14 +29,14 @@ export default function Posts({ posts, isAdmin, onEditPost, isLocal }) {
             <section className="my-5">
                 {isAdmin && postData.length === 0 && (
                     <div className="text-center">
-                        <p className="text-center font-semibold text-xl">
+                        <p className={`${mode === 'dark' ? 'text-white' : 'text-black'} text-center font-semibold text-xl`}>
                             No post created by admin
                         </p>
                         {user.role === "admin" && (
                             <Link to="/new-post">
                                 <Button
                                     type="button"
-                                    className="bg-[#201d75] hover:bg-[#121056] mt-3"
+                                    className={`${mode === 'dark' ? 'bg-[#6366F1] hover:bg-[#454bf7]' : 'bg-[#201D75] hover:bg-[#121056]'} mt-3`}
                                     title="Create new post"
                                 />
                             </Link>
@@ -69,6 +69,7 @@ export default function Posts({ posts, isAdmin, onEditPost, isLocal }) {
                                     onDelete={() => deleteHandler(post.id)}
                                     isAdmin={isAdmin}
                                     isLocal={isLocal}
+                                    mode={mode}
                                     onEditPost={onEditPost}
                                 />
                             );

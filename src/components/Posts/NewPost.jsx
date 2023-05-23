@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../UI/PostForm";
+import ModeContext from "../../context/mode-context";
 
 const getLocalItems = () => {
     let list = localStorage.getItem("listOfPosts");
@@ -14,6 +15,7 @@ const getLocalItems = () => {
 
 export default function NewPost() {
     const navigate = useNavigate();
+    const ctx = useContext(ModeContext)
     const [enteredData, setEnteredData] = useState({
         id: Math.floor(Math.random() * 9000 + 1000),
         title: "",
@@ -61,17 +63,18 @@ export default function NewPost() {
     }, [postItems]);
 
     return (
-        <>
-            <h1 className="text-center text-3xl font-bold my-4">
+        <div className={`${ctx.mode === 'dark' && 'bg-[#1a2338]'} min-h-screen`}>
+            <h1 className={`${ctx.mode === 'dark' && 'text-white'} text-center text-3xl font-bold pt-8`}>
                 Let's Create New Post
             </h1>
             <div className="max-w-2xl m-auto">
                 <PostForm
                     enteredData={enteredData}
+                    mode={ctx.mode}
                     inputChangeHandler={inputChangeHandler}
                     addPostHandler={addPostHandler}
                 />
             </div>
-        </>
+        </div>
     );
 }

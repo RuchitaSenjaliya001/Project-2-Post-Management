@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import ConfirmationAlert from "../components/ConfirmationAlert";
@@ -6,6 +6,7 @@ import ConfirmationAlert from "../components/ConfirmationAlert";
 export default function RootLayout({ userLoginData }) {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+
 
     const showModalHandler = () => {
         setShowModal(true);
