@@ -43,7 +43,7 @@ export default function PostDetail() {
         localStorage.setItem("listOfPosts", JSON.stringify(updated));
         navigate("/");
     };
-    console.log(currentPost);
+
     return (
         <>
             {showModal && (
